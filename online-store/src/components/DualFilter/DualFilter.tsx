@@ -1,0 +1,82 @@
+import React, { FC, useState } from 'react';
+import styles from './DualFilter.module.scss';
+import { IDualFilterData } from '../../types/goods';
+import Slider from '@mui/material/Slider';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import EuroIcon from '@mui/icons-material/Euro';
+
+const DualFilter: FC<IDualFilterData> = (props) => {
+  const theme = createTheme({
+    components: {
+      MuiSlider: {
+        styleOverrides: {
+          root: {
+            color: '#84a8ec',
+          },
+          thumb: {
+            width: '15px',
+            height: '15px',
+          },
+        },
+      },
+    },
+  });
+
+  const { title, min, max, sign } = props;
+
+  const [value, setValue] = useState<number[]>([min, max]);
+  const [rangeMin, rangeMax] = value;
+  const minDistance = 0;
+
+  const handleChange = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number,
+  ) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setValue([Math.min(newValue[0], rangeMax - minDistance), rangeMax]);
+    } else {
+      setValue([rangeMin, Math.max(newValue[1], rangeMin + minDistance)]);
+    }
+  };
+
+  return (
+    <div>
+      <h3
+        className={styles.filterTitle}
+      >{`${title[0].toUpperCase()}${title.slice(1)}`}</h3>
+      <div className={styles.sliderWrapper}>
+        <div className={styles.rangeWrapper}>
+          <span className={styles.rangeMin}>
+            <>
+              {sign && <EuroIcon />}
+              {rangeMin}
+            </>
+          </span>
+          <span className={styles.rangeMax}>
+            <>
+              {sign && <EuroIcon />}
+              {rangeMax}
+            </>
+          </span>
+        </div>
+        <ThemeProvider theme={theme}>
+          <Slider
+            min={min}
+            max={max}
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="off"
+            disableSwap
+          />
+        </ThemeProvider>
+      </div>
+    </div>
+  );
+};
+
+export default DualFilter;

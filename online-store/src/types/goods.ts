@@ -9,3 +9,10 @@ export interface ICheckboxFilterData {
   totalCount: number;
   selectedCount: number;
 }
+
+export interface IDualFilterData {
+  title: string;
+  min: number;
+  max: number;
+  sign?: boolean;
+}
