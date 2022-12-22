@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write ./src/**/*"
   },
   "browserslist": [
     "last 2 version",

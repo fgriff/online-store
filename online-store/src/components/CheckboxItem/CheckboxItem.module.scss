@@ -1,0 +1,59 @@
+@import '../../scss/variables.scss';
+
+.filterItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  color: $color-text;
+  user-select: none;
+
+  &:hover {
+    color: $color-input-checked;
+    cursor: pointer;
+  }
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+
+  &:checked ~ .mockCheckbox {
+    background-color: $color-input-checked;
+  }
+}
+
+.checkbox:checked ~ .mockCheckbox:after {
+  display: block;
+}
+
+.mockCheckbox {
+  width: 18px;
+  height: 18px;
+  background-color: $color-card-bg;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mockCheckbox:after {
+  content: '';
+  display: none;
+  width: 6px;
+  height: 10px;
+  border: solid $color-card-bg;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 6px;
+  top: 3px;
+}
+
+.count {
+  color: $color-text;
+}
