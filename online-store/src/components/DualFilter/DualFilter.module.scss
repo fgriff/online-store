@@ -1,0 +1,34 @@
+@import '../../scss/variables.scss';
+
+.filterTitle {
+  margin-bottom: $size-filter-mb;
+  color: $color-light;
+}
+
+.sliderWrapper {
+  margin-left: 10px;
+  width: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rangeWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rangeMin,
+.rangeMax {
+  display: flex;
+  line-height: 1.6rem;
+  color: $color-light;
+}
+
+.rangeMin {
+  margin-left: -10px;
+}
+
+.rangeMax {
+  margin-right: -10px;
+}
