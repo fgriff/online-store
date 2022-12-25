@@ -6,6 +6,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EuroIcon from '@mui/icons-material/Euro';
 
 const DualFilter: FC<IDualFilterData> = (props) => {
+  const { title, min, max, sign } = props;
+
   const theme = createTheme({
     components: {
       MuiSlider: {
@@ -21,8 +23,6 @@ const DualFilter: FC<IDualFilterData> = (props) => {
       },
     },
   });
-
-  const { title, min, max, sign } = props;
 
   const [value, setValue] = useState<number[]>([min, max]);
   const [rangeMin, rangeMax] = value;
