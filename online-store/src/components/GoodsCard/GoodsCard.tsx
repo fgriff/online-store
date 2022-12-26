@@ -6,13 +6,7 @@ import EuroIcon from '@mui/icons-material/Euro';
 import classnames from 'classnames';
 
 const GoodsCard: FC<IGoodsItemData> = (props) => {
-  const {
-    title,
-    description,
-    price,
-    rating,
-    thumbnail,
-  } = props;
+  const { title, description, price, rating, thumbnail } = props;
 
   const isColumn = false;
   const extraClass = isColumn ? styles.goodsCard_line : styles.goodsCard_mesh;
