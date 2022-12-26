@@ -54,7 +54,7 @@ module.exports = (env, options) => {
           test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
           type: 'asset/resource',
           generator: {
-            filename: 'asset/[name][ext]',
+            filename: 'assets/[hash][ext]',
           },
         },
         {
