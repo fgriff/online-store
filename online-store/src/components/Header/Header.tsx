@@ -1,7 +1,7 @@
 import React from 'react';
 import CartButton from '../CartButton/CartButton';
 import Logo from '../Logo/Logo';
-import Result from '../Result/Result';
+import ShowInfo from '../ShowInfo/ShowInfo';
 import styles from './Header.module.scss';
 import EuroIcon from '@mui/icons-material/Euro';
 
@@ -9,12 +9,12 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo />
-      <Result
+      <ShowInfo
         title={'Cart total: '}
         total={1234}
       >
         <EuroIcon />
-      </Result>
+      </ShowInfo>
       <CartButton />
     </header>
   );

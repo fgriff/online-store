@@ -45,17 +45,17 @@ const DualFilter: FC<IDualFilterData> = (props) => {
   };
 
   return (
-    <div>
-      <h3 className={styles.filterTitle}>{title}</h3>
-      <div className={styles.sliderWrapper}>
-        <div className={styles.rangeWrapper}>
-          <span className={styles.rangeMin}>
+    <div className={styles.dualFilter}>
+      <h3 className={styles.dualFilter__title}>{title}</h3>
+      <div className={styles.dualFilter__wrapper}>
+        <div className={styles.dualFilter__range}>
+          <span className={styles.dualFilter__minRange}>
             <>
               {sign && <EuroIcon />}
               {rangeMin}
             </>
           </span>
-          <span className={styles.rangeMax}>
+          <span className={styles.dualFilter__maxRange}>
             <>
               {sign && <EuroIcon />}
               {rangeMax}

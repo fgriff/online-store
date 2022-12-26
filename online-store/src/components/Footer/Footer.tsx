@@ -7,14 +7,14 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <a
-        className={styles.footerGithub}
+        className={styles.footer__github}
         href="https://github.com/fgriff"
         target="_blank"
       >
         <GitHubIcon sx={{ fontSize: 30 }} />
       </a>
       <time
-        className={styles.footerYear}
+        className={styles.footer__year}
         dateTime="2023"
       >
         2023
@@ -24,7 +24,7 @@ const Footer = () => {
         target="_blank"
       >
         <img
-          className={styles.footerLogo}
+          className={styles.footer__logo}
           src={rsschoolIcon}
           alt="RSSchool icon"
         />

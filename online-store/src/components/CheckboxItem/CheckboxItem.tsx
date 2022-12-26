@@ -6,16 +6,16 @@ const CheckboxItem: FC<ICheckboxFilterData> = (props) => {
   const { name, selectedCount, totalCount } = props;
 
   return (
-    <li className={styles.filterItem}>
-      <label className={styles.wrapper}>
+    <li className={styles.checkboxFilter__item}>
+      <label className={styles.item__wrapper}>
         {name.toLowerCase()}
         <input
           type="checkbox"
-          className={styles.checkbox}
+          className={styles.item__input}
         />
-        <span className={styles.mockCheckbox}></span>
+        <span className={styles.checkbox}></span>
       </label>
-      <div className={styles.count}>
+      <div className={styles.checkboxFilter__count}>
         (<span>{selectedCount}</span>/<span>{totalCount}</span>)
       </div>
     </li>

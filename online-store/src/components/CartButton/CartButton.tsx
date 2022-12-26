@@ -6,11 +6,11 @@ const CartButton = () => {
   return (
     <div className={styles.cartButton}>
       <img
-        className={styles.cartImage}
+        className={styles.cartButton__image}
         src={logoIcon}
         alt="Cart logo"
       />
-      <div className={styles.cartCount}>5</div>
+      <div className={styles.cartButton__count}>5</div>
     </div>
   );
 };
