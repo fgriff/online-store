@@ -1,0 +1,19 @@
+@import '../../scss/variables.scss';
+
+.info,
+.info__count {
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  font-size: 20px;
+  color: $color-input-checked;
+
+  &__count {
+    min-width: 60px;
+    margin-left: 5px;
+    font-size: 18px;
+    color: $color-light;
+  }
+}
