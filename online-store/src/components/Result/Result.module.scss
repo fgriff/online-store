@@ -1,0 +1,19 @@
+@import '../../scss/variables.scss';
+
+.result,
+.resultCount {
+  display: flex;
+  align-items: center;
+}
+
+.result {
+  font-size: 20px;
+  color: $color-input-checked;
+}
+
+.resultCount {
+  min-width: 60px;
+  margin-left: 5px;
+  font-size: 18px;
+  color: $color-light;
+}

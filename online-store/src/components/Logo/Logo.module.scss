@@ -1,0 +1,20 @@
+@import '../../scss/variables.scss';
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.logoTitle {
+  color: $color-light;
+}
+
+.logoSelect {
+  color: $color-button;
+}

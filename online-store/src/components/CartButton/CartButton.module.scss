@@ -1,0 +1,33 @@
+@import '../../scss/variables.scss';
+
+.cartButton {
+  width: 30px;
+  height: 30px;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.cartImage {
+  width: 100%;
+}
+
+.cartCount {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: $color-input-checked;
+}
+
+.cartCount {
+  color: $color-light;
+  font-size: 14px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
