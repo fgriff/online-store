@@ -10,9 +10,9 @@ const Logo = () => {
         src={logoIcon}
         alt="Logo"
       />
-      <h1 className={styles.logo__title}>
+      <span className={styles.logo__title}>
         Online<span className={styles.logo__title_selected}>store</span>
-      </h1>
+      </span>
     </div>
   );
 };
