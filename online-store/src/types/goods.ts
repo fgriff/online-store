@@ -16,3 +16,11 @@ export interface IDualFilterData {
   max: number;
   sign?: boolean;
 }
+
+export interface IGoodsItemData {
+  title: string;
+  description: string;
+  price: number;
+  rating: number;
+  thumbnail: string;
+}
