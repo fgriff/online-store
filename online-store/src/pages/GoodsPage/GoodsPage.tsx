@@ -9,8 +9,6 @@ import mockCategories from '../../assets/mocks/categories';
 import mockGoodsCards from '../../assets/mocks/goodsCards';
 
 const GoodsPage = () => {
-  const cardElements = mockGoodsCards.map((c) => <GoodsCard {...c} />);
-
   return (
     <div className={styles.goodsPage}>
       <div className={styles.filters}>
@@ -36,7 +34,11 @@ const GoodsPage = () => {
       </div>
       <div className={styles.goodsWrapper}>
         <GoodsPageHeader />
-        <div className={styles.goods}>{cardElements}</div>
+        <div className={styles.goods}>
+          {mockGoodsCards.map((card) => (
+            <GoodsCard {...card} />
+          ))}
+        </div>
       </div>
     </div>
   );

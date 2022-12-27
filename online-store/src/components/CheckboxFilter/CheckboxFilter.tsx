@@ -10,8 +10,8 @@ const CheckboxFilter: FC<ICheckboxFiltersData> = (props) => {
     <div className={styles.checkboxFilter}>
       <h3 className={styles.checkboxFilter__title}>{title}</h3>
       <ul>
-        {data.map((f) => (
-          <CheckboxItem {...f} />
+        {data.map((filterData) => (
+          <CheckboxItem {...filterData} />
         ))}
       </ul>
     </div>
