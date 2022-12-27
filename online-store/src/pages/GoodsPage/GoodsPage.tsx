@@ -2,7 +2,7 @@ import React from 'react';
 import CheckboxFilter from '../../components/CheckboxFilter/CheckboxFilter';
 import DualFilter from '../../components/DualFilter/DualFilter';
 import GoodsCard from '../../components/GoodsCard/GoodsCard';
-import GoodsPageHeader from '../../components/GoodsPageHeader/GoodsPageHeader';
+import GoodsHeader from '../../components/GoodsHeader/GoodsHeader';
 import styles from './GoodsPage.scss';
 import mockBrands from '../../assets/mocks/brands';
 import mockCategories from '../../assets/mocks/categories';
@@ -33,7 +33,7 @@ const GoodsPage = () => {
         />
       </div>
       <div className={styles.goodsWrapper}>
-        <GoodsPageHeader />
+        <GoodsHeader />
         <div className={styles.goods}>
           {mockGoodsCards.map((card) => (
             <GoodsCard {...card} />

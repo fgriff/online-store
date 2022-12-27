@@ -3,9 +3,9 @@ import ShowInfo from '../ShowInfo/ShowInfo';
 import GoodsSearch from '../GoodsSearch/GoodsSearch';
 import GoodsSort from '../GoodsSort/GoodsSort';
 import LayoutToggle from '../LayoutToggle/LayoutToggle';
-import styles from './GoodsPageHeader.scss';
+import styles from './GoodsHeader.scss';
 
-const GoodsPageHeader = () => {
+const GoodsHeader = () => {
   return (
     <div className={styles.goodsHeader}>
       <GoodsSort />
@@ -19,4 +19,4 @@ const GoodsPageHeader = () => {
   );
 };
 
-export default GoodsPageHeader;
+export default GoodsHeader;
