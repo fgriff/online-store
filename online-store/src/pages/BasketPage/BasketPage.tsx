@@ -10,7 +10,7 @@ const BasketPage = () => {
   const [basketState, setBasketState] = useState<IBasket>(basketMock);
   console.log('basketState', basketState);
 
-  const addQuantityHandler = (id: number): void => {
+  const incQuantityHandler = (id: number): void => {
     setBasketState(
       basketState.map((prod) => {
         return prod.id === id
@@ -20,7 +20,7 @@ const BasketPage = () => {
     );
   };
 
-  const minusQuantityHandler = (id: number): void => {
+  const decQuantityHandler = (id: number): void => {
     setBasketState(
       basketState
         .map((prod) => {
@@ -44,8 +44,8 @@ const BasketPage = () => {
     <div className={s.basket}>
       <BasketList
         basket={basketState}
-        addQuantity={addQuantityHandler}
-        minusQuantity={minusQuantityHandler}
+        incQuantity={incQuantityHandler}
+        decQuantity={decQuantityHandler}
       />
       <BasketSummary
         products={products}

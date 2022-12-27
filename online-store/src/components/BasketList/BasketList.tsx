@@ -5,12 +5,12 @@ import { IBasket } from '../../types/basket';
 
 interface IBasketList {
   basket: IBasket;
-  addQuantity: (id: number) => void;
-  minusQuantity: (id: number) => void;
+  incQuantity: (id: number) => void;
+  decQuantity: (id: number) => void;
 }
 
 const BasketList: FC<IBasketList> = (props) => {
-  const { basket, addQuantity, minusQuantity } = props;
+  const { basket, incQuantity, decQuantity } = props;
 
   return (
     <div className={s.list}>
@@ -20,8 +20,8 @@ const BasketList: FC<IBasketList> = (props) => {
           key={prod.id}
           basket={prod}
           item={index + 1}
-          addQuantity={addQuantity}
-          minusQuantity={minusQuantity}
+          incQuantity={incQuantity}
+          decQuantity={decQuantity}
         />
       ))}
     </div>

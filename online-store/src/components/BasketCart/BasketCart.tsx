@@ -9,12 +9,12 @@ import { IBasketCard } from '../../types/basket';
 interface IBasketCart {
   basket: IBasketCard;
   item: number;
-  addQuantity: (id: number) => void;
-  minusQuantity: (id: number) => void;
+  incQuantity: (id: number) => void;
+  decQuantity: (id: number) => void;
 }
 
 const BasketCart: FC<IBasketCart> = (props) => {
-  const { basket, item, addQuantity, minusQuantity } = props;
+  const { basket, item, incQuantity, decQuantity } = props;
   const sum = basket.price * basket.quantity;
 
   const toFormat = (num: number): string => num.toLocaleString('en-US');
@@ -42,14 +42,14 @@ const BasketCart: FC<IBasketCart> = (props) => {
         <span>Price: € {toFormat(basket.price)}</span>
         <div className={s.card__amount}>
           <BasketButton
-            noClick={minusQuantity}
+            noClick={decQuantity}
             id={basket.id}
           >
             <RemoveCircleIcon sx={{ fontSize: 25 }} />
           </BasketButton>
           <div className={s.card__quantity}> {basket.quantity} </div>
           <BasketButton
-            noClick={addQuantity}
+            noClick={incQuantity}
             id={basket.id}
           >
             <AddCircleIcon sx={{ fontSize: 25 }} />
