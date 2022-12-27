@@ -1,8 +1,15 @@
 import React from 'react';
-import styles from './App.module.scss';
+import BasketPage from './pages/BasketPage/BasketPage';
+import styles from './App.scss';
 
 const App = () => {
-  return <h1 className={styles.app}>Hello world</h1>;
+  return (
+    <div className={styles.app}>
+      <main className={styles.main}>
+        <BasketPage />
+      </main>
+    </div>
+  );
 };
 
 export default App;
