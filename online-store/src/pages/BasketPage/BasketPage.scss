@@ -1,0 +1,11 @@
+@import "src/scss/mixins";
+
+.basket {
+  display: flex;
+  gap: 10px;
+
+  @include media-desktop {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
