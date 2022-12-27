@@ -1,7 +1,7 @@
 import React from 'react';
-import GoodsPage from '../../pages/GoodsPage/GoodsPage';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import GoodsPage from './pages/GoodsPage/GoodsPage';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 import styles from './App.scss';
 import { Route, Routes } from 'react-router-dom';
 
