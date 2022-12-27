@@ -8,7 +8,7 @@ import mockBrands from '../../assets/mocks/brands';
 import mockCategories from '../../assets/mocks/categories';
 import mockGoodsCards from '../../assets/mocks/goodsCards';
 
-const Goods = () => {
+const GoodsPage = () => {
   const cardElements = mockGoodsCards.map((c) => <GoodsCard {...c} />);
 
   return (
@@ -42,4 +42,4 @@ const Goods = () => {
   );
 };
 
-export default Goods;
+export default GoodsPage;
