@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Sort.scss';
+import styles from './GoodsSort.scss';
 
-const Sort = () => {
+const GoodsSort = () => {
   return (
     <div className={styles.sorting}>
       <select className={styles.sorting__select}>
@@ -28,4 +28,4 @@ const Sort = () => {
   );
 };
 
-export default Sort;
+export default GoodsSort;

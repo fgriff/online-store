@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Search.scss';
+import styles from './GoodsSearch.scss';
 
-const Search = () => {
+const GoodsSearch = () => {
   return (
     <div className={styles.search}>
       <input
@@ -13,4 +13,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default GoodsSearch;

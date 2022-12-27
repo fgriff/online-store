@@ -1,20 +1,20 @@
 import React from 'react';
 import ShowInfo from '../ShowInfo/ShowInfo';
-import Search from '../Search/Search';
-import Sort from '../Sort/Sort';
-import View from '../View/View';
+import GoodsSearch from '../GoodsSearch/GoodsSearch';
+import GoodsSort from '../GoodsSort/GoodsSort';
+import LayoutToggle from '../LayoutToggle/LayoutToggle';
 import styles from './GoodsPageHeader.scss';
 
 const GoodsPageHeader = () => {
   return (
     <div className={styles.goodsHeader}>
-      <Sort />
+      <GoodsSort />
       <ShowInfo
         title={'Found: '}
         total={50}
       />
-      <Search />
-      <View />
+      <GoodsSearch />
+      <LayoutToggle />
     </div>
   );
 };

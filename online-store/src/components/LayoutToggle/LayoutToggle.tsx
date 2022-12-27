@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './View.scss';
+import styles from './LayoutToggle.scss';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 
-const View = () => {
+const LayoutToggle = () => {
   return (
     <div className={styles.view}>
       <label className={styles.view__label}>
@@ -31,4 +31,4 @@ const View = () => {
   );
 };
 
-export default View;
+export default LayoutToggle;
