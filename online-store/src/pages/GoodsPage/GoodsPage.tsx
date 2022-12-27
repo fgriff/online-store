@@ -3,7 +3,7 @@ import CheckboxFilter from '../../components/CheckboxFilter/CheckboxFilter';
 import DualFilter from '../../components/DualFilter/DualFilter';
 import GoodsCard from '../../components/GoodsCard/GoodsCard';
 import GoodsPageHeader from '../../components/GoodsPageHeader/GoodsPageHeader';
-import styles from './GoodsPage.module.scss';
+import styles from './GoodsPage.scss';
 
 const Goods = () => {
   const mockDataBrand = [

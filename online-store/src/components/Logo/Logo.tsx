@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Logo.module.scss';
+import styles from './Logo.scss';
 import logoIcon from '../../assets/img/png/logo.png';
 
 const Logo = () => {

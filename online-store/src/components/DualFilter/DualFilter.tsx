@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import styles from './DualFilter.module.scss';
+import styles from './DualFilter.scss';
 import { IDualFilterData } from '../../types/goods';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

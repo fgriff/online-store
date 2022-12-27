@@ -3,7 +3,7 @@ import ShowInfo from '../ShowInfo/ShowInfo';
 import Search from '../Search/Search';
 import Sort from '../Sort/Sort';
 import View from '../View/View';
-import styles from './GoodsPageHeader.module.scss';
+import styles from './GoodsPageHeader.scss';
 
 const GoodsPageHeader = () => {
   return (

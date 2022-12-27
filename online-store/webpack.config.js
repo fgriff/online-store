@@ -37,7 +37,9 @@ module.exports = (env, options) => {
               loader: 'css-loader',
               options: {
                 modules: {
-                  localIdentName: !isProd ? '[path][name]__[local]--[hash:base64:2]' : '[local]-[hash:base64:5]',
+                  localIdentName: !isProd
+                    ? '[name]--[local]--[hash:base64:2]'
+                    : '[local]-[hash:base64:5]',
                 },
               },
             },
@@ -78,7 +80,7 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, './src/index.html'),
         filename: 'index.html',
-        // favicon: './src/assets/favicon.svg',
+        favicon: './assets/favicon.ico',
       }),
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { IGoodsItemData } from '../../types/goods';
-import styles from './GoodsCard.module.scss';
+import styles from './GoodsCard.scss';
 import StarIcon from '@mui/icons-material/Star';
 import EuroIcon from '@mui/icons-material/Euro';
 import classnames from 'classnames';

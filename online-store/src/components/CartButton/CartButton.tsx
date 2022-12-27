@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CartButton.module.scss';
+import styles from './CartButton.scss';
 import logoIcon from '../../assets/img/png/cart.png';
 
 const CartButton = () => {

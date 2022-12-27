@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Footer.module.scss';
+import styles from './Footer.scss';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import rsschoolIcon from '../../assets/img/svg/rs_school-icon.svg';
 
