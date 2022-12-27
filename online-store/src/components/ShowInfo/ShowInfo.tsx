@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { IShowInfo } from '../../types/header';
-import styles from './ShowInfo.module.scss';
+import styles from './ShowInfo.scss';
 
 const ShowInfo: FC<IShowInfo> = (props) => {
   const { children, title, total } = props;

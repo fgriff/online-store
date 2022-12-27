@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Sort.module.scss';
+import styles from './Sort.scss';
 
 const Sort = () => {
   return (
