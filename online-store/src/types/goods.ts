@@ -17,10 +17,15 @@ export interface IDualFilterData {
   sign?: boolean;
 }
 
-export interface IGoodsItemData {
+export interface IGoodsCardData {
   title: string;
   description: string;
   price: number;
   rating: number;
   thumbnail: string;
+}
+
+export interface IGoodsCardProps {
+  data: IGoodsCardData;
+  layout: string;
 }
