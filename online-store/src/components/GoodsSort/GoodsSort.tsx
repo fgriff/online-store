@@ -5,24 +5,12 @@ const GoodsSort = () => {
   return (
     <div className={styles.sorting}>
       <select className={styles.sorting__select}>
-        <option value="priceASC">
-          <span>Price (asc)</span>
-        </option>
-        <option value="priceDESC">
-          <span>Price (desc)</span>
-        </option>
-        <option value="brandASC">
-          <span>Brand (asc)</span>
-        </option>
-        <option value="brandDESC">
-          <span>Brand (desc)</span>
-        </option>
-        <option value="discountASC">
-          <span>Discount (asc)</span>
-        </option>
-        <option value="discountDESC">
-          <span>Discount (desc)</span>
-        </option>
+        <option value="priceASC">Price (asc)</option>
+        <option value="priceDESC">Price (desc)</option>
+        <option value="brandASC">Brand (asc)</option>
+        <option value="brandDESC">Brand (desc)</option>
+        <option value="discountASC">Discount (asc)</option>
+        <option value="discountDESC">Discount (desc)</option>
       </select>
     </div>
   );
