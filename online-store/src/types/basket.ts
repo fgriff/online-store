@@ -27,4 +27,4 @@ export interface IBasketCard {
   images: string[];
 }
 
-export type IBasket = Array<IBasketCard>;
+export type IBasketData = Array<IBasketCard>;

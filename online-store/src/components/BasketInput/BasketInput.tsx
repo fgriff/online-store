@@ -1,11 +1,11 @@
 import React from 'react';
-import s from './BasketInput.scss';
+import style from './BasketInput.scss';
 
 const BasketInput = () => {
   return (
-    <div className={s.input}>
+    <div className={style.input}>
       <input
-        className={s.input__field}
+        className={style.input__field}
         type="text"
         placeholder="Enter promo code"
       />

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import s from './BasketButton.scss';
+import style from './BasketButton.scss';
 
 interface IButton {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ const BasketButton: FC<IButton> = (props) => {
   return (
     <button
       onClick={() => noClick(id)}
-      className={s.button}
+      className={style.button}
     >
       {children}
     </button>

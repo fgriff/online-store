@@ -1,6 +1,6 @@
-import { IBasket } from '../../types/basket';
+import { IBasketData } from '../../types/basket';
 
-const basket: IBasket = [
+const basket: IBasketData = [
   {
     quantity: 1, // количество товара выбранное покупателем
     id: 1,

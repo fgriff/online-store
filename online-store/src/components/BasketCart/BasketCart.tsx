@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import s from './BasketCart.scss';
+import style from './BasketCart.scss';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
@@ -20,34 +20,34 @@ const BasketCart: FC<IBasketCart> = (props) => {
   const toFormat = (num: number): string => num.toLocaleString('en-US');
 
   return (
-    <div className={s.card}>
-      <div className={s.card__item}> {item} </div>
-      <div className={s.card__info}>
+    <div className={style.card}>
+      <div className={style.card__item}> {item} </div>
+      <div className={style.card__info}>
         <img
-          className={s.card__img}
+          className={style.card__img}
           src={basket.images[0]}
           alt={basket.title}
         />
-        <div className={s.card__detail}>
-          <h3 className={s.card__title}> {basket.title} </h3>
-          <div className={s.card__description}> {basket.description} </div>
-          <div className={s.card__addInfo}>
+        <div className={style.card__detail}>
+          <h3 className={style.card__title}> {basket.title} </h3>
+          <div className={style.card__description}> {basket.description} </div>
+          <div className={style.card__addInfo}>
             <span>Rating: {basket.rating}</span>
             <span>Discount: {basket.discountPercentage}%</span>
             <span>{`Stock: ${basket.stock}`}</span>
           </div>
         </div>
       </div>
-      <div className={s.card__control}>
+      <div className={style.card__control}>
         <span>Price: € {toFormat(basket.price)}</span>
-        <div className={s.card__amount}>
+        <div className={style.card__amount}>
           <BasketButton
             noClick={decQuantity}
             id={basket.id}
           >
             <RemoveCircleIcon sx={{ fontSize: 25 }} />
           </BasketButton>
-          <div className={s.card__quantity}> {basket.quantity} </div>
+          <div className={style.card__quantity}> {basket.quantity} </div>
           <BasketButton
             noClick={incQuantity}
             id={basket.id}
@@ -55,7 +55,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
             <AddCircleIcon sx={{ fontSize: 25 }} />
           </BasketButton>
         </div>
-        <span className={s.card__sum}> € {toFormat(sum)} </span>
+        <span className={style.card__sum}> € {toFormat(sum)} </span>
       </div>
     </div>
   );
