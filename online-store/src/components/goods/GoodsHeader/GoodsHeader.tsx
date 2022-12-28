@@ -1,8 +1,8 @@
 import React from 'react';
-import ShowInfo from '../ShowInfo/ShowInfo';
+import ShowInfo from '../../ShowInfo/ShowInfo';
 import GoodsSearch from '../GoodsSearch/GoodsSearch';
 import GoodsSort from '../GoodsSort/GoodsSort';
-import LayoutToggle from '../LayoutToggle/LayoutToggle';
+import LayoutToggle from '../../LayoutToggle/LayoutToggle';
 import styles from './GoodsHeader.scss';
 
 const GoodsHeader = () => {

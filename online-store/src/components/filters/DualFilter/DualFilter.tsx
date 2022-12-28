@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import styles from './DualFilter.scss';
-import { IDualFilterData } from '../../types/goods';
+import { IDualFilterData } from '../../../types/goods';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EuroIcon from '@mui/icons-material/Euro';

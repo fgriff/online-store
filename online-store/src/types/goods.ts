@@ -25,6 +25,10 @@ export interface IGoodsCardData {
   thumbnail: string;
 }
 
+export interface IGoodsListProps {
+  layout: string;
+}
+
 export interface IGoodsCardProps {
   data: IGoodsCardData;
   layout: string;
