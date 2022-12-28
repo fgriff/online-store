@@ -18,7 +18,7 @@ const BasketList: FC<IBasketList> = (props) => {
       {basket.map((prod, index) => (
         <BasketCart
           key={prod.id}
-          basket={prod}
+          product={prod}
           item={index + 1}
           incQuantity={incQuantity}
           decQuantity={decQuantity}
