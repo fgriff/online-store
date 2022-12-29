@@ -1,0 +1,33 @@
+@import '../../scss/variables.scss';
+
+.view {
+  width: 130px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__label {
+    width: 60px;
+    height: 100%;
+    border-radius: 5px;
+    background-color: $color-card-bg;
+    color: $color-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: lighten($color-card-bg, 15%);
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .view__icon {
+      color: $color-button;
+    }
+  }
+}
