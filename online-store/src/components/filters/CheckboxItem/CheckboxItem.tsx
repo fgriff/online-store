@@ -1,9 +1,13 @@
 import React, { FC } from 'react';
-import { ICheckboxFilterData } from '../../../types/goods';
+import { ICheckboxItemData } from '../../../types/goods';
 import styles from './CheckboxItem.scss';
 
-const CheckboxItem: FC<ICheckboxFilterData> = (props) => {
-  const { name, selectedCount, totalCount } = props;
+const CheckboxItem: FC<ICheckboxItemData> = (props) => {
+  const {
+    data: { name, selectedCount, totalCount },
+    checked,
+    onChangeHandler,
+  } = props;
 
   return (
     <li className={styles.checkboxFilter__item}>
@@ -12,6 +16,8 @@ const CheckboxItem: FC<ICheckboxFilterData> = (props) => {
         <input
           type="checkbox"
           className={styles.item__input}
+          checked={checked}
+          onChange={() => onChangeHandler(name, checked)}
         />
         <span className={styles.checkbox}></span>
       </label>

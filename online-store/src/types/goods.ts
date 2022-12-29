@@ -3,11 +3,17 @@ export interface ICheckboxFiltersData {
   data: ICheckboxFilterData[];
 }
 
-export interface ICheckboxFilterData {
+interface ICheckboxFilterData {
   id: number;
   name: string;
   totalCount: number;
   selectedCount: number;
+}
+
+export interface ICheckboxItemData {
+  data: { id: number; name: string; totalCount: number; selectedCount: number };
+  checked: boolean;
+  onChangeHandler: (value: string, isChecked: boolean) => void;
 }
 
 export interface IDualFilterData {
