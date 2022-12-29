@@ -1,8 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './DualFilter.scss';
 import { IDualFilterData } from '../../../types/goods';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
+import { setDualSlider } from '../../../redux/slices/filtersSlice';
 
 const DualFilter: FC<IDualFilterData> = (props) => {
   const { title, min, max, children } = props;
@@ -23,8 +25,17 @@ const DualFilter: FC<IDualFilterData> = (props) => {
     },
   });
 
-  const [value, setValue] = useState<number[]>([min, max]);
-  const [rangeMin, rangeMax] = value;
+  const dispatch = useTypedDispatch();
+
+  useEffect(() => {
+    dispatch(setDualSlider({ title, minValue: min, maxValue: max }));
+  }, []);
+
+  const values = useTypedSelector(
+    (state) => state.filters[title.toLowerCase()] as number[],
+  );
+
+  const [rangeMin, rangeMax] = values;
   const minDistance = 0;
 
   const handleChange = (
@@ -36,10 +47,17 @@ const DualFilter: FC<IDualFilterData> = (props) => {
       return;
     }
 
+    let minValue: number;
+    let maxValue: number;
+
     if (activeThumb === 0) {
-      setValue([Math.min(newValue[0], rangeMax - minDistance), rangeMax]);
+      minValue = Math.min(newValue[0], rangeMax - minDistance);
+      maxValue = rangeMax;
+      dispatch(setDualSlider({ title, minValue, maxValue }));
     } else {
-      setValue([rangeMin, Math.max(newValue[1], rangeMin + minDistance)]);
+      minValue = rangeMin;
+      maxValue = Math.max(newValue[1], rangeMin + minDistance);
+      dispatch(setDualSlider({ title, minValue, maxValue }));
     }
   };
 
@@ -54,14 +72,14 @@ const DualFilter: FC<IDualFilterData> = (props) => {
           </span>
           <span className={styles.dualFilter__maxRange}>
             {children}
-            {rangeMin}
+            {rangeMax}
           </span>
         </div>
         <ThemeProvider theme={theme}>
           <Slider
             min={min}
             max={max}
-            value={value}
+            value={values}
             onChange={handleChange}
             valueLabelDisplay="off"
             disableSwap

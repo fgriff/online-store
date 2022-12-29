@@ -29,9 +29,14 @@ const filtersSlice = createSlice({
         (state[title] as string[]).push(value);
       }
     },
+    setDualSlider(state, action) {
+      const title = action.payload.title.toLowerCase();
+      const { minValue, maxValue } = action.payload;
+      state[title] = [minValue, maxValue];
+    },
   },
 });
 
-export const { toggleCheckbox } = filtersSlice.actions;
+export const { toggleCheckbox, setDualSlider } = filtersSlice.actions;
 
 export default filtersSlice.reducer;
