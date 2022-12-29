@@ -20,7 +20,7 @@ export interface IDualFilterData {
   title: string;
   min: number;
   max: number;
-  sign?: boolean;
+  children?: JSX.Element;
 }
 
 export interface IGoodsCardData {
