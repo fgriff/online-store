@@ -3,10 +3,9 @@ import styles from './DualFilter.scss';
 import { IDualFilterData } from '../../../types/goods';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import EuroIcon from '@mui/icons-material/Euro';
 
 const DualFilter: FC<IDualFilterData> = (props) => {
-  const { title, min, max, sign } = props;
+  const { title, min, max, children } = props;
 
   const theme = createTheme({
     components: {
@@ -50,12 +49,12 @@ const DualFilter: FC<IDualFilterData> = (props) => {
       <div className={styles.dualFilter__wrapper}>
         <div className={styles.dualFilter__range}>
           <span className={styles.dualFilter__minRange}>
-            {sign && <EuroIcon />}
+            {children}
             {rangeMin}
           </span>
           <span className={styles.dualFilter__maxRange}>
-            {sign && <EuroIcon />}
-            {rangeMax}
+            {children}
+            {rangeMin}
           </span>
         </div>
         <ThemeProvider theme={theme}>
