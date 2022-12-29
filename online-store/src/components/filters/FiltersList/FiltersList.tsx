@@ -9,11 +9,11 @@ const FiltersList = () => {
   return (
     <div className={styles.filters}>
       <CheckboxFilter
-        title={'Brand'}
+        title={'Brands'}
         data={mockBrands}
       />
       <CheckboxFilter
-        title={'Category'}
+        title={'Categories'}
         data={mockCategories}
       />
       <DualFilter
