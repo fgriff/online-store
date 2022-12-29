@@ -63,26 +63,26 @@ function BasketPage() {
   };
 
   const incQuantityHandler = (id: number): void => {
-    setProductsState((productsState) => {
-      if (productsState !== null) {
-        const prod = productsState[id];
-        prod.quantity += 1;
-      }
-      return { ...productsState };
-    });
+    if (productsState === null) return;
+
+    const newProductsState = { ...productsState };
+    const prod = newProductsState[id];
+    prod.quantity += 1;
+
+    setProductsState(newProductsState);
   };
 
   const decQuantityHandler = (id: number): void => {
-    setProductsState((productsState) => {
-      if (productsState !== null) {
-        const prod = productsState[id];
-        prod.quantity -= 1;
-        if (prod.quantity === 0) {
-          delete productsState[id];
-        }
-      }
-      return { ...productsState };
-    });
+    if (productsState === null) return;
+
+    const newProductsState = { ...productsState };
+    const prod = newProductsState[id];
+    prod.quantity -= 1;
+    if (prod.quantity === 0) {
+      delete newProductsState[id];
+    }
+
+    setProductsState(newProductsState);
   };
 
   return (

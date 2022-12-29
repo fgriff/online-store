@@ -17,7 +17,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
   const { product, quantity } = card;
   const sum = product.price * quantity;
 
-  const toFormat = (num: number): string => num.toLocaleString('en-US');
+  const toFormat = (num: number): string => `${num.toLocaleString('en-US')}`;
 
   return (
     <div className={style.card}>

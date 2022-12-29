@@ -19,7 +19,7 @@ const BasketSummary: FC<BasketSummary> = ({ totalProducts, totalSum = 0 }) => {
         <div>
           Total sum: €{' '}
           <span className={style.summary__colorText}>
-            {totalSum.toLocaleString('en-US')}
+            {`${totalSum.toLocaleString('en-US')}`}
           </span>
         </div>
         <BasketInput />
