@@ -3,18 +3,19 @@ import style from './BasketCart.scss';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-import { IBasketCard } from '../../types/basket';
+import { ICard } from '../../../types/basket';
 
 interface IBasketCart {
-  product: IBasketCard;
+  card: ICard;
   item: number;
   incQuantity: (id: number) => void;
   decQuantity: (id: number) => void;
 }
 
 const BasketCart: FC<IBasketCart> = (props) => {
-  const { product, item, incQuantity, decQuantity } = props;
-  const sum = product.price * product.quantity;
+  const { card, item, incQuantity, decQuantity } = props;
+  const { product, quantity } = card;
+  const sum = product.price * quantity;
 
   const toFormat = (num: number): string => num.toLocaleString('en-US');
 
@@ -46,7 +47,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
           >
             <RemoveCircleIcon sx={{ fontSize: 25 }} />
           </button>
-          <div className={style.card__quantity}> {product.quantity} </div>
+          <div className={style.card__quantity}> {quantity} </div>
           <button
             className={style.card__button}
             onClick={() => incQuantity(product.id)}

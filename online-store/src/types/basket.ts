@@ -28,3 +28,20 @@ export interface IBasketCard {
 }
 
 export type IBasketData = Array<IBasketCard>;
+
+export interface IProductsState {
+  [key: number]: {
+    product: IProduct;
+    quantity: number;
+  };
+}
+
+export interface ICard {
+  product: IProduct;
+  quantity: number;
+}
+
+export interface ITotal {
+  totalSum: number;
+  totalProducts: number;
+}

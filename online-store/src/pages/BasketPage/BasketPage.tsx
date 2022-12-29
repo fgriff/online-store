@@ -1,51 +1,107 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import style from './BasketPage.scss';
-import BasketList from '../../components/BasketList/BasketList';
-import BasketSummary from '../../components/BasketSummary/BasketSummary';
-import { IBasketData } from '../../types/basket';
+import BasketList from '../../components/basket/BasketList/BasketList';
+import BasketSummary from '../../components/basket/BasketSummary/BasketSummary';
+import { IProductsState, ITotal } from '../../types/basket';
 
-import basketMock from '../../assets/mocks/basket-mock';
+import productsStorage from '../../assets/mocks/storage-mock';
+const basketContent = [1, 2, 3, 4, 10];
+localStorage.setItem('basketContent', JSON.stringify(basketContent));
 
-const BasketPage = () => {
-  const [basketState, setBasketState] = useState<IBasketData>(basketMock);
+function BasketPage() {
+  const [basketState, setBasketState] = useState<number[] | null>(null);
+  const [productsState, setProductsState] = useState<IProductsState | null>(
+    null,
+  );
+  const [total, setTotal] = useState<ITotal>({
+    totalSum: 0,
+    totalProducts: 0,
+  });
+
+  useEffect(() => {
+    const localBasket = localStorage.getItem('basketContent');
+    if (localBasket !== null) {
+      const basketContent = JSON.parse(localBasket);
+      setBasketState(basketContent);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (basketState !== null) {
+      const products = getBasketProduct(basketState);
+      setProductsState(products);
+    }
+  }, [basketState]);
+
+  useLayoutEffect(() => {
+    setTotal(() => {
+      let totalSum = 0;
+      let totalProducts = 0;
+      if (productsState !== null) {
+        Object.values(productsState).forEach((prod) => {
+          totalSum = totalSum + prod.product.price * prod.quantity;
+          totalProducts = totalProducts + prod.quantity;
+        });
+      }
+      return { totalSum, totalProducts };
+    });
+
+    if (productsState !== null) {
+      const basketContent = Object.keys(productsState);
+      localStorage.setItem('basketContent', JSON.stringify(basketContent));
+    }
+  }, [productsState]);
+
+  const getBasketProduct = (arr: number[]): IProductsState => {
+    const res: IProductsState = {};
+    productsStorage.forEach((prod) => {
+      if (arr.includes(prod.id)) {
+        res[prod.id] = { product: prod, quantity: 1 };
+      }
+    });
+    return res;
+  };
 
   const incQuantityHandler = (id: number): void => {
-    setBasketState((basket) => {
-      const product = basket.find((prod) => prod.id === id);
-      if (product) product.quantity += 1;
-      return [...basket];
+    setProductsState((productsState) => {
+      if (productsState !== null) {
+        const prod = productsState[id];
+        prod.quantity += 1;
+      }
+      return { ...productsState };
     });
   };
 
   const decQuantityHandler = (id: number): void => {
-    setBasketState((basket) => {
-      const product = basket.find((prod) => prod.id === id);
-      if (product) product.quantity -= 1;
-      return [...basket].filter((prod) => prod.quantity !== 0);
+    setProductsState((productsState) => {
+      if (productsState !== null) {
+        const prod = productsState[id];
+        prod.quantity -= 1;
+        if (prod.quantity === 0) {
+          delete productsState[id];
+        }
+      }
+      return { ...productsState };
     });
   };
 
-  const totalSum = basketState.reduce((sum, prod) => {
-    return sum + prod.price * prod.quantity;
-  }, 0);
-
-  const totalProducts = basketState.reduce((sum, prod) => {
-    return sum + prod.quantity;
-  }, 0);
-
   return (
     <div className={style.basket}>
-      <BasketList
-        basket={basketState}
-        incQuantity={incQuantityHandler}
-        decQuantity={decQuantityHandler}
-      />
+      {productsState !== null ? (
+        <BasketList
+          basket={productsState}
+          incQuantity={incQuantityHandler}
+          decQuantity={decQuantityHandler}
+        />
+      ) : (
+        <div className={style.empty}>The basket is empty</div>
+      )}
       <BasketSummary
-        totalProducts={totalProducts}
-        totalSum={totalSum}
+        totalProducts={total.totalProducts}
+        totalSum={total.totalSum}
       />
     </div>
   );
-};
+}
 
 export default BasketPage;

@@ -3,11 +3,11 @@ import style from './BasketSummary.scss';
 import BasketInput from '../BasketInput/BasketInput';
 
 interface BasketSummary {
-  totalProducts: number;
+  totalProducts?: number;
   totalSum: number;
 }
 
-const BasketSummary: FC<BasketSummary> = ({ totalProducts, totalSum }) => {
+const BasketSummary: FC<BasketSummary> = ({ totalProducts, totalSum = 0 }) => {
   return (
     <div className={style.summary}>
       <h2 className={style.summary__title}>Summary</h2>
