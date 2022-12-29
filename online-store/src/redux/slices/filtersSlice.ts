@@ -34,9 +34,16 @@ const filtersSlice = createSlice({
       const { minValue, maxValue } = action.payload;
       state[title] = [minValue, maxValue];
     },
+    setSortType(state, action) {
+      state.sortType = action.payload.sortType;
+    },
+    setSearchField(state, action) {
+      state.searchValue = action.payload.searchValue;
+    },
   },
 });
 
-export const { toggleCheckbox, setDualSlider } = filtersSlice.actions;
+export const { toggleCheckbox, setDualSlider, setSortType, setSearchField } =
+  filtersSlice.actions;
 
 export default filtersSlice.reducer;
