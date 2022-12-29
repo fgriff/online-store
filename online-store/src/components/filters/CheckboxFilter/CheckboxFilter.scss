@@ -1,0 +1,8 @@
+@import '../../../scss/variables.scss';
+
+.checkboxFilter {
+  &__title {
+    margin-bottom: $size-filter-mb;
+    color: $color-light;
+  }
+}
