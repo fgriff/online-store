@@ -30,8 +30,7 @@ const filtersSlice = createSlice({
       }
     },
     setDualSlider(state, action) {
-      const title = action.payload.title.toLowerCase();
-      const { minValue, maxValue } = action.payload;
+      const { title, minValue, maxValue } = action.payload;
       state[title] = [minValue, maxValue];
     },
     setSortType(state, action) {
