@@ -17,7 +17,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
   const { product, quantity } = card;
   const sum = product.price * quantity;
 
-  const toFormat = (num: number): string => `${num.toLocaleString('en-US')}`;
+  const toFormat = (num: number): string => num.toLocaleString('en-US');
 
   return (
     <div className={style.card}>
@@ -32,14 +32,14 @@ const BasketCart: FC<IBasketCart> = (props) => {
           <h3 className={style.card__title}> {product.title} </h3>
           <div className={style.card__description}> {product.description} </div>
           <div className={style.card__addInfo}>
-            <span>Rating: {product.rating}</span>
-            <span>Discount: {product.discountPercentage}%</span>
+            <span>{`Rating: ${product.rating}`}</span>
+            <span>{`Discount: ${product.discountPercentage}%`}</span>
             <span>{`Stock: ${product.stock}`}</span>
           </div>
         </div>
       </div>
       <div className={style.card__control}>
-        <span>Price: € {toFormat(product.price)}</span>
+        <span>{`Price: € ${toFormat(product.price)}`}</span>
         <div className={style.card__amount}>
           <button
             className={style.card__button}
@@ -55,7 +55,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
             <AddCircleIcon sx={{ fontSize: 25 }} />
           </button>
         </div>
-        <span className={style.card__sum}> € {toFormat(sum)} </span>
+        <span className={style.card__sum}>{`€ ${toFormat(sum)}`}</span>
       </div>
     </div>
   );
