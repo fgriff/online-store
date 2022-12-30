@@ -1,0 +1,48 @@
+@import '../../../scss/variables';
+
+.summary {
+  margin: auto;
+  color: $color-light;
+
+  &__title {
+    text-align: center;
+    font-size: 2.4rem;
+    padding-top: 5px;
+    border-bottom: 2px solid #35363a;
+  }
+  
+  &__colorText {
+    color: $color-input-checked;
+  }
+
+  &__block {
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    margin: 5px;
+    width: 300px;
+    background-color: $color-card-bg;
+    border-radius: 15px;
+  }
+  
+  &__button {
+    width: 150px;
+    height: 40px;
+    border: 1px solid $color-input-checked;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    color: $color-button;
+    transition: all 0.2s;
+    
+    &:hover {
+      transform: scale(1.1);
+      background-color: #093C99;
+      color: $color-input-checked;
+      border: none;
+    }
+  }
+}

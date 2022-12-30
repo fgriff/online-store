@@ -6,13 +6,22 @@ import rsschoolIcon from '../../assets/img/svg/rs_school-icon.svg';
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <a
-        className={styles.footer__github}
-        href="https://github.com/fgriff"
-        target="_blank"
-      >
-        <GitHubIcon sx={{ fontSize: 30 }} />
-      </a>
+      <div className={styles.footer__githubWrapper}>
+        <a
+          className={styles.footer__github}
+          href="https://github.com/fgriff"
+          target="_blank"
+        >
+          <GitHubIcon sx={{ fontSize: 30 }} />
+        </a>
+        <a
+          className={styles.footer__github}
+          href="https://github.com/IvanBusygin"
+          target="_blank"
+        >
+          <GitHubIcon sx={{ fontSize: 30 }} />
+        </a>
+      </div>
       <time
         className={styles.footer__year}
         dateTime="2023"

@@ -20,6 +20,11 @@
     color: $color-light;
   }
 
+  &__githubWrapper{
+    display: flex;
+    gap: 20px;
+  }
+
   &__logo {
     width: 75px;
     height: 50px;
