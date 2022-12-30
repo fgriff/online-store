@@ -75,3 +75,18 @@ export const updateSearchQueryParams = (
 
   setSearchCallback(searchCallback);
 };
+
+export const updateLayoutQueryParams = (
+  key: string,
+  value: string,
+  searchCallback: URLSearchParams,
+  setSearchCallback: (value: URLSearchParams) => void,
+) => {
+  if (value) {
+    searchCallback.set(key, value);
+  } else {
+    searchCallback.delete(key);
+  }
+
+  setSearchCallback(searchCallback);
+};

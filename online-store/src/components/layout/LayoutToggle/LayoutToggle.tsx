@@ -5,8 +5,12 @@ import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { toggleLayout } from '../../../redux/slices/filtersSlice';
 import LayoutToggleItem from '../LayoutToggleItem/LayoutToggleItem';
+import { useSearchParams } from 'react-router-dom';
+import { updateLayoutQueryParams } from '../../../utils/queryUtils';
 
 const LayoutToggle = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
@@ -21,6 +25,8 @@ const LayoutToggle = () => {
     } else if (value === 'grid') {
       dispatch(toggleLayout({ isGrid: true }));
     }
+
+    updateLayoutQueryParams('layout', value, searchParams, setSearchParams);
   };
 
   return (
