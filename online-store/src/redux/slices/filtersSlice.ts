@@ -6,7 +6,7 @@ const initialState: IFiltersState = {
   categories: [],
   price: [],
   stock: [],
-  sortType: '',
+  sort: '',
   searchValue: '',
   isGrid: true,
 };
@@ -34,7 +34,7 @@ const filtersSlice = createSlice({
       state[title] = [minValue, maxValue];
     },
     setSortType(state, action) {
-      state.sortType = action.payload.sortType;
+      state.sort = action.payload.sort;
     },
     setSearchField(state, action) {
       state.searchValue = action.payload.searchValue;

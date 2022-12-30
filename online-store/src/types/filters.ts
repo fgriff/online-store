@@ -4,7 +4,7 @@ export interface IFiltersState {
   categories: string[];
   price: number[];
   stock: number[];
-  sortType: string;
+  sort: string;
   searchValue: string;
   isGrid: boolean;
 }

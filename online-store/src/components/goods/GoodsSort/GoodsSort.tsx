@@ -1,19 +1,29 @@
 import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setSortType } from '../../../redux/slices/filtersSlice';
+import { updateSortQueryParams } from '../../../utils/queryUtils';
 import styles from './GoodsSort.scss';
 
 const GoodsSort = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    dispatch(setSortType({ sortType: 'priceASC' }));
+    dispatch(setSortType({ sort: 'selected' }));
   }, []);
 
-  const sortType = useTypedSelector((state) => state.filters.sortType);
+  const sortType = useTypedSelector((state) => state.filters.sort);
 
   const onChangeHandler = (value: string) => {
-    dispatch(setSortType({ sortType: value }));
+    dispatch(setSortType({ sort: value }));
+    updateSortQueryParams(
+      'sort',
+      value.toLowerCase(),
+      searchParams,
+      setSearchParams,
+    );
   };
 
   return (
@@ -23,12 +33,18 @@ const GoodsSort = () => {
         value={sortType}
         onChange={(e) => onChangeHandler(e.target.value)}
       >
-        <option value="priceASC">Price (asc)</option>
-        <option value="priceDESC">Price (desc)</option>
-        <option value="brandASC">Brand (asc)</option>
-        <option value="brandDESC">Brand (desc)</option>
-        <option value="discountASC">Discount (asc)</option>
-        <option value="discountDESC">Discount (desc)</option>
+        <option
+          disabled
+          value="selected"
+        >
+          Sort options:
+        </option>
+        <option value="price-asc">Price (asc)</option>
+        <option value="price-desc">Price (desc)</option>
+        <option value="brand-asc">Brand (asc)</option>
+        <option value="brand-desc">Brand (desc)</option>
+        <option value="discount-asc">Discount (asc)</option>
+        <option value="discount-desc">Discount (desc)</option>
       </select>
     </div>
   );

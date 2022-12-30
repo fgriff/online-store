@@ -50,3 +50,13 @@ export const updateSliderQueryParams = (
 
   setSearchCallback(searchCallback);
 };
+
+export const updateSortQueryParams = (
+  key: string,
+  value: string,
+  searchCallback: URLSearchParams,
+  setSearchCallback: (value: URLSearchParams) => void,
+) => {
+  searchCallback.set(key, value);
+  setSearchCallback(searchCallback);
+};
