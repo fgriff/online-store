@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setDualSlider } from '../../../redux/slices/filtersSlice';
 import { useSearchParams } from 'react-router-dom';
-import { updateSliderQueryParams } from '../../../utils/queryUtils';
+import { updateSliderQueryParams } from '../../../utils/queryParams';
 
 const DualFilter: FC<IDualFilterData> = (props) => {
   const { title, min, max, children } = props;

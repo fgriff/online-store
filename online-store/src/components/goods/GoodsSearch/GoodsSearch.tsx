@@ -2,7 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setSearchField } from '../../../redux/slices/filtersSlice';
-import { updateSearchQueryParams } from '../../../utils/queryUtils';
+import { updateSearchQueryParams } from '../../../utils/queryParams';
 import styles from './GoodsSearch.scss';
 
 const GoodsSearch = () => {
