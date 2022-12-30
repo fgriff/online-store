@@ -6,5 +6,5 @@ export interface IFiltersState {
   stock: number[];
   sortType: string;
   searchValue: string;
-  layout: boolean;
+  isGrid: boolean;
 }
