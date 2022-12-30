@@ -5,6 +5,8 @@ import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setDualSlider } from '../../../redux/slices/filtersSlice';
+import { useSearchParams } from 'react-router-dom';
+import { updateSliderQueryParams } from '../../../utils/queryUtils';
 
 const DualFilter: FC<IDualFilterData> = (props) => {
   const { title, min, max, children } = props;
@@ -25,14 +27,20 @@ const DualFilter: FC<IDualFilterData> = (props) => {
     },
   });
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const dispatch = useTypedDispatch();
 
+  const modifiedTitle = title.toLowerCase();
+
   useEffect(() => {
-    dispatch(setDualSlider({ title, minValue: min, maxValue: max }));
+    dispatch(
+      setDualSlider({ title: modifiedTitle, minValue: min, maxValue: max }),
+    );
   }, []);
 
   const values = useTypedSelector(
-    (state) => state.filters[title.toLowerCase()] as number[],
+    (state) => state.filters[modifiedTitle] as number[],
   );
 
   const [rangeMin, rangeMax] = values;
@@ -53,12 +61,19 @@ const DualFilter: FC<IDualFilterData> = (props) => {
     if (activeThumb === 0) {
       minValue = Math.min(newValue[0], rangeMax - minDistance);
       maxValue = rangeMax;
-      dispatch(setDualSlider({ title, minValue, maxValue }));
     } else {
       minValue = rangeMin;
       maxValue = Math.max(newValue[1], rangeMin + minDistance);
-      dispatch(setDualSlider({ title, minValue, maxValue }));
     }
+
+    dispatch(setDualSlider({ title: modifiedTitle, minValue, maxValue }));
+    updateSliderQueryParams(
+      modifiedTitle,
+      minValue,
+      maxValue,
+      searchParams,
+      setSearchParams,
+    );
   };
 
   return (

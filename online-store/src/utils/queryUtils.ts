@@ -28,3 +28,25 @@ export const updateCheckboxQueryParams = (
 
   setSearchCallback(searchCallback);
 };
+
+export const updateSliderQueryParams = (
+  key: string,
+  min: number,
+  max: number,
+  searchCallback: URLSearchParams,
+  setSearchCallback: (value: URLSearchParams) => void,
+) => {
+  if (searchCallback.has(key)) {
+    const valuesArr = searchCallback.get(key)?.split('|');
+
+    if (valuesArr) {
+      valuesArr[0] = String(min);
+      valuesArr[1] = String(max);
+      searchCallback.set(key, valuesArr.join('|'));
+    }
+  } else {
+    searchCallback.set(key, `${min}|${max}`);
+  }
+
+  setSearchCallback(searchCallback);
+};
