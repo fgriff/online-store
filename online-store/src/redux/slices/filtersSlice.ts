@@ -8,7 +8,7 @@ const initialState: IFiltersState = {
   stock: [],
   sortType: '',
   searchValue: '',
-  layout: true,
+  isGrid: true,
 };
 
 const filtersSlice = createSlice({
@@ -40,10 +40,18 @@ const filtersSlice = createSlice({
     setSearchField(state, action) {
       state.searchValue = action.payload.searchValue;
     },
+    toggleLayout(state, action) {
+      state.isGrid = action.payload.isGrid;
+    },
   },
 });
 
-export const { toggleCheckbox, setDualSlider, setSortType, setSearchField } =
-  filtersSlice.actions;
+export const {
+  toggleCheckbox,
+  setDualSlider,
+  setSortType,
+  setSearchField,
+  toggleLayout,
+} = filtersSlice.actions;
 
 export default filtersSlice.reducer;
