@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setSortType } from '../../../redux/slices/filtersSlice';
-import { updateSortQueryParams } from '../../../utils/queryUtils';
+import { updateSortQueryParams } from '../../../utils/queryParams';
 import styles from './GoodsSort.scss';
 
 const GoodsSort = () => {

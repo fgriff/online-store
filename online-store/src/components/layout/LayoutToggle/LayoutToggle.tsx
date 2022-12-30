@@ -6,7 +6,7 @@ import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { toggleLayout } from '../../../redux/slices/filtersSlice';
 import LayoutToggleItem from '../LayoutToggleItem/LayoutToggleItem';
 import { useSearchParams } from 'react-router-dom';
-import { updateLayoutQueryParams } from '../../../utils/queryUtils';
+import { updateLayoutQueryParams } from '../../../utils/queryParams';
 
 const LayoutToggle = () => {
   const [searchParams, setSearchParams] = useSearchParams();

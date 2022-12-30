@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { toggleCheckbox } from '../../../redux/slices/filtersSlice';
 import { ICheckboxFiltersData } from '../../../types/goods';
-import { updateCheckboxQueryParams } from '../../../utils/queryUtils';
+import { updateCheckboxQueryParams } from '../../../utils/queryParams';
 import CheckboxItem from '../CheckboxItem/CheckboxItem';
 import styles from './CheckboxFilter.scss';
 
