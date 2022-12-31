@@ -7,8 +7,8 @@ const initialState: IFiltersState = {
   price: [],
   stock: [],
   sort: '',
-  searchValue: '',
-  isGrid: true,
+  search: '',
+  layout: '',
 };
 
 const filtersSlice = createSlice({
@@ -37,10 +37,10 @@ const filtersSlice = createSlice({
       state.sort = action.payload.sort;
     },
     setSearchField(state, action) {
-      state.searchValue = action.payload.searchValue;
+      state.search = action.payload.search;
     },
     toggleLayout(state, action) {
-      state.isGrid = action.payload.isGrid;
+      state.layout = action.payload.layout;
     },
   },
 });

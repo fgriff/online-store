@@ -1,10 +1,10 @@
 export interface IFiltersState {
-  [key: string]: string | string[] | number[] | boolean;
+  [key: string]: string | string[] | number[];
   brands: string[];
   categories: string[];
   price: number[];
   stock: number[];
   sort: string;
-  searchValue: string;
-  isGrid: boolean;
+  search: string;
+  layout: string;
 }

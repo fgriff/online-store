@@ -7,6 +7,7 @@ import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setDualSlider } from '../../../redux/slices/filtersSlice';
 import { useSearchParams } from 'react-router-dom';
 import { updateSliderQueryParams } from '../../../utils/queryParams';
+import { parseQueryString } from '../../../utils/queryParser';
 
 const DualFilter: FC<IDualFilterData> = (props) => {
   const { title, min, max, children } = props;
@@ -28,15 +29,14 @@ const DualFilter: FC<IDualFilterData> = (props) => {
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
-
   const dispatch = useTypedDispatch();
-
   const modifiedTitle = title.toLowerCase();
 
   useEffect(() => {
     dispatch(
       setDualSlider({ title: modifiedTitle, minValue: min, maxValue: max }),
     );
+    parseQueryString(modifiedTitle, searchParams, dispatch);
   }, []);
 
   const values = useTypedSelector(

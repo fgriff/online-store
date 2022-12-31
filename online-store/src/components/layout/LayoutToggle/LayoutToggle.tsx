@@ -7,23 +7,24 @@ import { toggleLayout } from '../../../redux/slices/filtersSlice';
 import LayoutToggleItem from '../LayoutToggleItem/LayoutToggleItem';
 import { useSearchParams } from 'react-router-dom';
 import { updateLayoutQueryParams } from '../../../utils/queryParams';
+import { parseQueryString } from '../../../utils/queryParser';
 
 const LayoutToggle = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    dispatch(toggleLayout({ isGrid: true }));
+    dispatch(toggleLayout({ layout: 'grid' }));
+    parseQueryString('layout', searchParams, dispatch);
   }, []);
 
-  const isGrid = useTypedSelector((state) => state.filters.isGrid) as boolean;
+  const layout = useTypedSelector((state) => state.filters.layout);
 
   const onClickHandler = (value: string) => {
     if (value === 'list') {
-      dispatch(toggleLayout({ isGrid: false }));
+      dispatch(toggleLayout({ layout: 'list' }));
     } else if (value === 'grid') {
-      dispatch(toggleLayout({ isGrid: true }));
+      dispatch(toggleLayout({ layout: 'grid' }));
     }
 
     updateLayoutQueryParams('layout', value, searchParams, setSearchParams);
@@ -33,14 +34,14 @@ const LayoutToggle = () => {
     <div className={styles.layout}>
       <LayoutToggleItem
         value={'list'}
-        isChecked={!isGrid}
+        isChecked={layout === 'list' ? true : false}
         onClickHandler={onClickHandler}
       >
         <ViewListIcon sx={{ fontSize: 30 }} />
       </LayoutToggleItem>
       <LayoutToggleItem
         value={'grid'}
-        isChecked={isGrid}
+        isChecked={layout === 'grid' ? true : false}
         onClickHandler={onClickHandler}
       >
         <ViewModuleIcon sx={{ fontSize: 30 }} />
