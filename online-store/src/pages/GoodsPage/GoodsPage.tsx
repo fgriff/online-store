@@ -6,8 +6,7 @@ import GoodsHeader from '../../components/goods/GoodsHeader/GoodsHeader';
 import { useTypedSelector } from '../../redux/hooks';
 
 const GoodsPage = () => {
-  const isGrid = useTypedSelector((state) => state.filters.isGrid);
-  const layout = isGrid ? 'grid' : 'list';
+  const layout = useTypedSelector((state) => state.filters.layout);
 
   return (
     <div className={styles.goodsPage}>

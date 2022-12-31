@@ -3,15 +3,16 @@ import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setSortType } from '../../../redux/slices/filtersSlice';
 import { updateSortQueryParams } from '../../../utils/queryParams';
+import { parseQueryString } from '../../../utils/queryParser';
 import styles from './GoodsSort.scss';
 
 const GoodsSort = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
     dispatch(setSortType({ sort: 'selected' }));
+    parseQueryString('sort', searchParams, dispatch);
   }, []);
 
   const sortType = useTypedSelector((state) => state.filters.sort);

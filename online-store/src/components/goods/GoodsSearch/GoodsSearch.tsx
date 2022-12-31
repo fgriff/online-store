@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { setSearchField } from '../../../redux/slices/filtersSlice';
 import { updateSearchQueryParams } from '../../../utils/queryParams';
+import { parseQueryString } from '../../../utils/queryParser';
 import styles from './GoodsSearch.scss';
 
 const GoodsSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const searchValue = useTypedSelector((state) => state.filters.searchValue);
-
   const dispatch = useTypedDispatch();
 
+  useEffect(() => {
+    parseQueryString('search', searchParams, dispatch);
+  }, []);
+
+  const searchValue = useTypedSelector((state) => state.filters.search);
+
   const onChangeHandler = (value: string) => {
-    dispatch(setSearchField({ searchValue: value }));
+    dispatch(setSearchField({ search: value }));
     updateSearchQueryParams(
       'search',
       value.toLowerCase(),
