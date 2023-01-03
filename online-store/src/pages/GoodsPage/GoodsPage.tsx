@@ -35,12 +35,10 @@ const GoodsPage = () => {
   }, []);
 
   useEffect(() => {
-    (async () => {
-      const filteredData = filterData(initialProducts, filters);
-      const filteredCount = getProductsTotalCount(filteredData);
+    const filteredData = filterData(initialProducts, filters);
+    const filteredCount = getProductsTotalCount(filteredData);
 
-      dispatch(setFilteredData({ filteredCount, products: filteredData }));
-    })();
+    dispatch(setFilteredData({ filteredCount, products: filteredData }));
   }, [filters]);
 
   return (
