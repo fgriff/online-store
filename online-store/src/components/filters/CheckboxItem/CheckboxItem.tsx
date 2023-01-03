@@ -5,19 +5,21 @@ import styles from './CheckboxItem.scss';
 const CheckboxItem: FC<ICheckboxItemData> = (props) => {
   const {
     data: { name, selectedCount, totalCount },
-    checked,
+    isChecked,
     onChangeHandler,
   } = props;
 
   return (
     <li className={styles.checkboxFilter__item}>
       <label className={styles.item__wrapper}>
-        {name.toLowerCase()}
+        <span className={selectedCount && styles.checkboxFilter__name}>
+          {name.toLowerCase()}
+        </span>
         <input
           type="checkbox"
           className={styles.item__input}
-          checked={checked}
-          onChange={() => onChangeHandler(name, checked)}
+          checked={isChecked}
+          onChange={() => onChangeHandler(name, isChecked)}
         />
         <span className={styles.checkbox}></span>
       </label>

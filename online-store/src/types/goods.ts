@@ -1,18 +1,19 @@
+import { IProductsItem } from './products';
+
 export interface ICheckboxFiltersData {
   title: string;
   data: ICheckboxFilterData[];
 }
 
 interface ICheckboxFilterData {
-  id: number;
   name: string;
   totalCount: number;
   selectedCount: number;
 }
 
 export interface ICheckboxItemData {
-  data: { id: number; name: string; totalCount: number; selectedCount: number };
-  checked: boolean;
+  data: { name: string; totalCount: number; selectedCount: number };
+  isChecked: boolean;
   onChangeHandler: (value: string, isChecked: boolean) => void;
 }
 
@@ -36,6 +37,6 @@ export interface IGoodsListProps {
 }
 
 export interface IGoodsCardProps {
-  data: IGoodsCardData;
+  data: IProductsItem;
   layout: string;
 }

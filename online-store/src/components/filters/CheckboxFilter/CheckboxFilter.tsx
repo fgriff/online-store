@@ -39,13 +39,14 @@ const CheckboxFilter: FC<ICheckboxFiltersData> = (props) => {
   return (
     <div className={styles.checkboxFilter}>
       <h3 className={styles.checkboxFilter__title}>{title}</h3>
-      <ul>
-        {data.map((filterData) => {
+      <ul className={styles.checkboxFilter__list}>
+        {data.map((filterData, idx) => {
           const isChecked = values.includes(filterData.name.toLowerCase());
           return (
             <CheckboxItem
+              key={idx}
               data={filterData}
-              checked={isChecked}
+              isChecked={isChecked}
               onChangeHandler={toggleFilter}
             />
           );

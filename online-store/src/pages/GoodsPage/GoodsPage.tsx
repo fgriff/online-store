@@ -6,11 +6,18 @@ import GoodsHeader from '../../components/goods/GoodsHeader/GoodsHeader';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { URL } from '../../utils/constants';
 import { getProductsTotalCount } from '../../utils/productsCount';
-import { setInitialData } from '../../redux/slices/filtersSlice';
+import {
+  setFilteredData,
+  setInitialData,
+} from '../../redux/slices/filtersSlice';
+import { filterData } from '../../utils/filterData';
 
 const GoodsPage = () => {
   const {
+    filterValues: filters,
     filterValues: { layout },
+    initialProducts,
+    filteredProducts: products,
   } = useTypedSelector(({ filters }) => filters);
 
   const dispatch = useTypedDispatch();
@@ -27,11 +34,20 @@ const GoodsPage = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      const filteredData = filterData(initialProducts, filters);
+      const filteredCount = getProductsTotalCount(filteredData);
+
+      dispatch(setFilteredData({ filteredCount, products: filteredData }));
+    })();
+  }, [filters]);
+
   return (
     <div className={styles.goodsPage}>
       <FiltersList />
       <div className={styles.goodsWrapper}>
-        <GoodsHeader />
+        <GoodsHeader count={products.length} />
         <GoodsList layout={layout} />
       </div>
     </div>

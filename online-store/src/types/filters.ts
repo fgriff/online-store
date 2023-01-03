@@ -15,4 +15,10 @@ export interface IProductsState {
   filterValues: IFilterValues;
   initialProductsCount: IProductsTotalCount;
   initialProducts: IProductsData;
+  filteredProductsCount: IProductsTotalCount;
+  filteredProducts: IProductsData;
+}
+
+export interface IProductsCount {
+  count: number;
 }

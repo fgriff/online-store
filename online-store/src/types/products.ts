@@ -1,4 +1,4 @@
-interface IProductsItem {
+export interface IProductsItem {
   [key: string]: number | string | string[];
   id: number;
   title: string;
