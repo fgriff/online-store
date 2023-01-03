@@ -18,7 +18,7 @@ const LayoutToggle = () => {
     parseQueryString('layout', searchParams, dispatch);
   }, []);
 
-  const layout = useTypedSelector((state) => state.filters.layout);
+  const layout = useTypedSelector(({ filters }) => filters.filterValues.layout);
 
   const onClickHandler = (value: string) => {
     if (value === 'list') {
