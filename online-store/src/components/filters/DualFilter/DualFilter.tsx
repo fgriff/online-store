@@ -17,13 +17,15 @@ const DualFilter: FC<IDualFilterData> = (props) => {
   const modifiedTitle = title.toLowerCase();
 
   useEffect(() => {
-    parseQueryString(modifiedTitle, searchParams, dispatch);
-  }, []);
-
-  useEffect(() => {
     dispatch(
-      setDualSlider({ title: modifiedTitle, minValue: min, maxValue: max }),
+      setDualSlider({
+        title: modifiedTitle,
+        minValue: min,
+        maxValue: max,
+        init: false,
+      }),
     );
+    parseQueryString(modifiedTitle, searchParams, dispatch);
   }, [min, max]);
 
   const values = useTypedSelector(
@@ -53,7 +55,9 @@ const DualFilter: FC<IDualFilterData> = (props) => {
       maxValue = Math.max(newValue[1], rangeMin + minDistance);
     }
 
-    dispatch(setDualSlider({ title: modifiedTitle, minValue, maxValue }));
+    dispatch(
+      setDualSlider({ title: modifiedTitle, minValue, maxValue, init: true }),
+    );
     updateSliderQueryParams(
       modifiedTitle,
       minValue,

@@ -51,15 +51,17 @@ const filtersSlice = createSlice({
       state.isNotStockSlider = false;
     },
     setDualSlider(state, action) {
-      const { title, minValue, maxValue } = action.payload;
+      const { title, minValue, maxValue, init } = action.payload;
       state.filterValues[title] = [minValue, maxValue];
 
-      if (title === 'price') {
-        state.isNotPriceSlider = true;
-        state.isNotStockSlider = false;
-      } else if (title === 'stock') {
-        state.isNotPriceSlider = false;
-        state.isNotStockSlider = true;
+      if (init) {
+        if (title === 'price') {
+          state.isNotPriceSlider = true;
+          state.isNotStockSlider = false;
+        } else if (title === 'stock') {
+          state.isNotPriceSlider = false;
+          state.isNotStockSlider = true;
+        }
       }
     },
     setSortType(state, action) {
@@ -92,7 +94,8 @@ const filtersSlice = createSlice({
         state.filteredProductsCount.price = price;
         state.filteredProductsCount.stock = state.filterValues.stock;
       } else {
-        state.filteredProductsCount = action.payload.filteredCount;
+        state.filteredProductsCount.price = price;
+        state.filteredProductsCount.stock = stock;
       }
     },
   },

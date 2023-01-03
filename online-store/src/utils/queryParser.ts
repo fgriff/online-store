@@ -35,6 +35,7 @@ export const parseQueryString = (
                 title: key,
                 minValue: NumberValuesArr[0],
                 maxValue: NumberValuesArr[1],
+                init: true,
               }),
             );
           }
