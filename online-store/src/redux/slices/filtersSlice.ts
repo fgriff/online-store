@@ -18,6 +18,13 @@ const initialState: IProductsState = {
     stock: [],
   },
   initialProducts: [],
+  filteredProducts: [],
+  filteredProductsCount: {
+    brand: {},
+    category: {},
+    price: [],
+    stock: [],
+  },
 };
 
 const filtersSlice = createSlice({
@@ -55,6 +62,10 @@ const filtersSlice = createSlice({
       state.initialProductsCount = action.payload.initialCount;
       state.initialProducts = action.payload.initialProducts;
     },
+    setFilteredData(state, action) {
+      state.filteredProductsCount = action.payload.filteredCount;
+      state.filteredProducts = action.payload.products;
+    },
   },
 });
 
@@ -65,6 +76,7 @@ export const {
   setSearchField,
   toggleLayout,
   setInitialData,
+  setFilteredData,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

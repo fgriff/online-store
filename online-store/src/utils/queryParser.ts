@@ -17,8 +17,8 @@ export const parseQueryString = (
     const valuesArr = values?.split('|');
 
     switch (key) {
-      case 'brands':
-      case 'categories':
+      case 'brand':
+      case 'category':
         valuesArr?.forEach((value) => {
           dispatch(toggleCheckbox({ title: key, value, isChecked: false }));
         });
