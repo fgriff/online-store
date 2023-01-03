@@ -1,14 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IFiltersState } from '../../types/filters';
+import { IProductsState } from '../../types/filters';
 
-const initialState: IFiltersState = {
-  brands: [],
-  categories: [],
-  price: [],
-  stock: [],
-  sort: '',
-  search: '',
-  layout: '',
+const initialState: IProductsState = {
+  filterValues: {
+    brand: [],
+    category: [],
+    price: [],
+    stock: [],
+    sort: '',
+    search: '',
+    layout: '',
+  },
+  initialProductsCount: {
+    brand: {},
+    category: {},
+    price: [],
+    stock: [],
+  },
+  initialProducts: [],
 };
 
 const filtersSlice = createSlice({
@@ -20,27 +29,31 @@ const filtersSlice = createSlice({
       const value = action.payload.value.toLowerCase();
 
       if (action.payload.isChecked) {
-        const idx = (state[title] as string[]).indexOf(value);
+        const idx = (state.filterValues[title] as string[]).indexOf(value);
 
         if (idx !== -1) {
-          (state[title] as string[]).splice(idx, 1);
+          (state.filterValues[title] as string[]).splice(idx, 1);
         }
       } else {
-        (state[title] as string[]).push(value);
+        (state.filterValues[title] as string[]).push(value);
       }
     },
     setDualSlider(state, action) {
       const { title, minValue, maxValue } = action.payload;
-      state[title] = [minValue, maxValue];
+      state.filterValues[title] = [minValue, maxValue];
     },
     setSortType(state, action) {
-      state.sort = action.payload.sort;
+      state.filterValues.sort = action.payload.sort;
     },
     setSearchField(state, action) {
-      state.search = action.payload.search;
+      state.filterValues.search = action.payload.search;
     },
     toggleLayout(state, action) {
-      state.layout = action.payload.layout;
+      state.filterValues.layout = action.payload.layout;
+    },
+    setInitialData(state, action) {
+      state.initialProductsCount = action.payload.initialCount;
+      state.initialProducts = action.payload.initialProducts;
     },
   },
 });
@@ -51,6 +64,7 @@ export const {
   setSortType,
   setSearchField,
   toggleLayout,
+  setInitialData,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

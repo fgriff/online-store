@@ -19,7 +19,9 @@ const CheckboxFilter: FC<ICheckboxFiltersData> = (props) => {
     parseQueryString(key, searchParams, dispatch);
   }, []);
 
-  const values = useTypedSelector((state) => state.filters[key] as string[]);
+  const values = useTypedSelector(
+    ({ filters }) => filters.filterValues[key] as string[],
+  );
 
   const toggleFilter = (value: string, isChecked: boolean) => {
     dispatch(toggleCheckbox({ title, value, isChecked }));

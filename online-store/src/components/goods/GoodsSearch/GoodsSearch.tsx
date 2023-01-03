@@ -14,7 +14,9 @@ const GoodsSearch = () => {
     parseQueryString('search', searchParams, dispatch);
   }, []);
 
-  const searchValue = useTypedSelector((state) => state.filters.search);
+  const searchValue = useTypedSelector(
+    ({ filters }) => filters.filterValues.search,
+  );
 
   const onChangeHandler = (value: string) => {
     dispatch(setSearchField({ search: value }));

@@ -15,7 +15,7 @@ const GoodsSort = () => {
     parseQueryString('sort', searchParams, dispatch);
   }, []);
 
-  const sortType = useTypedSelector((state) => state.filters.sort);
+  const sortType = useTypedSelector(({ filters }) => filters.filterValues.sort);
 
   const onChangeHandler = (value: string) => {
     dispatch(setSortType({ sort: value }));

@@ -1,10 +1,18 @@
-export interface IFiltersState {
+import { IProductsData, IProductsTotalCount } from './products';
+
+interface IFilterValues {
   [key: string]: string | string[] | number[];
-  brands: string[];
-  categories: string[];
+  brand: string[];
+  category: string[];
   price: number[];
   stock: number[];
   sort: string;
   search: string;
   layout: string;
+}
+
+export interface IProductsState {
+  filterValues: IFilterValues;
+  initialProductsCount: IProductsTotalCount;
+  initialProducts: IProductsData;
 }
