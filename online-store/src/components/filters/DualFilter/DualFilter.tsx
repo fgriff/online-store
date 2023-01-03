@@ -12,22 +12,6 @@ import { parseQueryString } from '../../../utils/queryParser';
 const DualFilter: FC<IDualFilterData> = (props) => {
   const { title, min, max, children } = props;
 
-  const theme = createTheme({
-    components: {
-      MuiSlider: {
-        styleOverrides: {
-          root: {
-            color: '#84a8ec',
-          },
-          thumb: {
-            width: '15px',
-            height: '15px',
-          },
-        },
-      },
-    },
-  });
-
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useTypedDispatch();
   const modifiedTitle = title.toLowerCase();
@@ -79,6 +63,22 @@ const DualFilter: FC<IDualFilterData> = (props) => {
     );
   };
 
+  const theme = createTheme({
+    components: {
+      MuiSlider: {
+        styleOverrides: {
+          root: {
+            color: '#84a8ec',
+          },
+          thumb: {
+            width: '15px',
+            height: '15px',
+          },
+        },
+      },
+    },
+  });
+
   return (
     <div className={styles.dualFilter}>
       <h3 className={styles.dualFilter__title}>{title}</h3>
@@ -87,6 +87,9 @@ const DualFilter: FC<IDualFilterData> = (props) => {
           <span className={styles.dualFilter__minRange}>
             {children}
             {rangeMin}
+          </span>
+          <span className={styles.dualFilter__result}>
+            {values.length ? '' : 'Not found'}
           </span>
           <span className={styles.dualFilter__maxRange}>
             {children}
