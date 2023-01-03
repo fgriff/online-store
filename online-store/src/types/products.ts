@@ -26,3 +26,14 @@ export interface IProductsTotalCount {
   price: number[];
   stock: number[];
 }
+
+export interface IFiltersState {
+  [key: string]: string | string[] | number[] | undefined;
+  brands?: string[];
+  categories?: string[];
+  price?: number[];
+  stock?: number[];
+  sort?: string;
+  search?: string;
+  layout?: string;
+}
