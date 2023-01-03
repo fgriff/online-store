@@ -11,6 +11,9 @@ const GoodsList: FC<IGoodsListProps> = (props) => {
 
   return (
     <div className={styles.goods}>
+      {!data.length && (
+        <h2 className={styles.goods__result}>No products found!</h2>
+      )}
       {data.map((card) => (
         <GoodsCard
           key={card.id}

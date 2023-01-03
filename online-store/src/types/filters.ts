@@ -13,6 +13,8 @@ interface IFilterValues {
 
 export interface IProductsState {
   filterValues: IFilterValues;
+  isNotPriceSlider: boolean;
+  isNotStockSlider: boolean;
   initialProductsCount: IProductsTotalCount;
   initialProducts: IProductsData;
   filteredProductsCount: IProductsTotalCount;
