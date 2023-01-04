@@ -98,6 +98,17 @@ const filtersSlice = createSlice({
         state.filteredProductsCount.stock = stock;
       }
     },
+    resetFilters(state) {
+      state.filterValues = {
+        brand: [],
+        category: [],
+        price: state.initialProductsCount.price,
+        stock: state.initialProductsCount.stock,
+        sort: '',
+        search: '',
+        layout: state.filterValues.layout,
+      };
+    },
   },
 });
 
@@ -109,6 +120,7 @@ export const {
   toggleLayout,
   setInitialData,
   setFilteredData,
+  resetFilters,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;
