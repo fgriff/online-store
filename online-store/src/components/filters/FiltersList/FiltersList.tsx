@@ -4,6 +4,7 @@ import CheckboxFilter from '../CheckboxFilter/CheckboxFilter';
 import DualFilter from '../DualFilter/DualFilter';
 import EuroIcon from '@mui/icons-material/Euro';
 import { useTypedSelector } from '../../../redux/hooks';
+import FilterButtons from '../../FilterButtons/FilterButtons';
 
 const FiltersList = () => {
   const { brands, categories, price, stock } = useTypedSelector(
@@ -55,6 +56,7 @@ const FiltersList = () => {
         min={stock[0]}
         max={stock[1]}
       />
+      <FilterButtons />
     </div>
   );
 };
