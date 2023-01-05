@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import styles from './App.scss';
 import { Route, Routes } from 'react-router-dom';
+import ProductPage from './pages/ProductPage/ProductPage';
 
 const App = () => {
   return (
@@ -15,6 +16,10 @@ const App = () => {
           <Route
             path="/"
             element={<GoodsPage />}
+          />
+          <Route
+            path="/product-details/:id"
+            element={<ProductPage />}
           />
           <Route
             path="/cart"
