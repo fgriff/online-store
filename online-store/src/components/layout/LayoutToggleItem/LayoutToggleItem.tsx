@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { ILayoutItemData } from '../../../types/layout';
+import { ILayoutItemProps } from '../../../types/layout';
 import styles from './LayoutToggleItem.scss';
 
-const LayoutToggleItem: FC<ILayoutItemData> = (props) => {
+const LayoutToggleItem: FC<ILayoutItemProps> = (props) => {
   const { value, children, onClickHandler, isChecked } = props;
 
   return (

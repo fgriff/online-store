@@ -1,4 +1,4 @@
-export interface ILayoutItemData {
+export interface ILayoutItemProps {
   value: string;
   isChecked: boolean;
   children: JSX.Element;
