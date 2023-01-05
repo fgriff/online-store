@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { ICheckboxItemData } from '../../../types/goods';
+import { ICheckboxFilterItemProps } from '../../../types/goods';
 import styles from './CheckboxItem.scss';
 
-const CheckboxItem: FC<ICheckboxItemData> = (props) => {
+const CheckboxItem: FC<ICheckboxFilterItemProps> = (props) => {
   const {
     data: { name, selectedCount, totalCount },
     isChecked,

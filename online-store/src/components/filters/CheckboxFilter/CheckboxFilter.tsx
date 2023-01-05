@@ -2,13 +2,13 @@ import React, { FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { toggleCheckbox } from '../../../redux/slices/filtersSlice';
-import { ICheckboxFiltersData } from '../../../types/goods';
+import { ICheckboxFiltersProps } from '../../../types/goods';
 import { updateCheckboxQueryParams } from '../../../utils/queryParams';
 import { parseQueryString } from '../../../utils/queryParser';
 import CheckboxItem from '../CheckboxItem/CheckboxItem';
 import styles from './CheckboxFilter.scss';
 
-const CheckboxFilter: FC<ICheckboxFiltersData> = (props) => {
+const CheckboxFilter: FC<ICheckboxFiltersProps> = (props) => {
   const { title, data } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();

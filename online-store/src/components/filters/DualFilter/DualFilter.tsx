@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styles from './DualFilter.scss';
-import { IDualFilterData } from '../../../types/goods';
+import { IDualFilterProps } from '../../../types/goods';
 import Slider from '@mui/material/Slider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
@@ -9,7 +9,7 @@ import { useSearchParams } from 'react-router-dom';
 import { updateSliderQueryParams } from '../../../utils/queryParams';
 import { parseQueryString } from '../../../utils/queryParser';
 
-const DualFilter: FC<IDualFilterData> = (props) => {
+const DualFilter: FC<IDualFilterProps> = (props) => {
   const { title, min, max, children } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();

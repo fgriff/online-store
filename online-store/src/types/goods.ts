@@ -1,23 +1,23 @@
 import { IProductsItem } from './products';
 
-export interface ICheckboxFiltersData {
+export interface ICheckboxFiltersProps {
   title: string;
-  data: ICheckboxFilterData[];
+  data: ICheckboxFilterProps[];
 }
 
-interface ICheckboxFilterData {
+interface ICheckboxFilterProps {
   name: string;
   totalCount: number;
   selectedCount: number;
 }
 
-export interface ICheckboxItemData {
+export interface ICheckboxFilterItemProps {
   data: { name: string; totalCount: number; selectedCount: number };
   isChecked: boolean;
   onChangeHandler: (value: string, isChecked: boolean) => void;
 }
 
-export interface IDualFilterData {
+export interface IDualFilterProps {
   title: string;
   min: number;
   max: number;
