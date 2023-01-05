@@ -36,15 +36,16 @@ const filtersSlice = createSlice({
     toggleCheckbox(state, action) {
       const title = action.payload.title.toLowerCase();
       const value = action.payload.value.toLowerCase();
+      const filterName = state.filterValues[title] as string[];
 
       if (action.payload.isChecked) {
-        const idx = (state.filterValues[title] as string[]).indexOf(value);
+        const idx = filterName.indexOf(value);
 
         if (idx !== -1) {
-          (state.filterValues[title] as string[]).splice(idx, 1);
+          filterName.splice(idx, 1);
         }
       } else {
-        (state.filterValues[title] as string[]).push(value);
+        filterName.push(value);
       }
 
       state.isNotPriceSlider = false;
