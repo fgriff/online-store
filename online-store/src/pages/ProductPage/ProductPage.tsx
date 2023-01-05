@@ -8,6 +8,7 @@ import styles from './ProductPage.module.scss';
 import EuroIcon from '@mui/icons-material/Euro';
 import Rating from '@mui/material/Rating';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Preloader from '../../components/Preloader/Preloader';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -16,10 +17,12 @@ const ProductPage = () => {
   );
 
   const [mainImage, setMainImage] = useState<string>();
+  const [download, setDownload] = useState<boolean>(true);
 
   useTypedSelector(({ filters }) => {
     if (id && filters.filteredProducts.length && !productData) {
       setProductData(getProductDataById(Number(id), filters.filteredProducts));
+      setDownload(false);
     }
   });
 
@@ -29,6 +32,7 @@ const ProductPage = () => {
         const response = await fetch(URL);
         const dataBase = await response.json();
         setProductData(getProductDataById(Number(id), dataBase.products));
+        setDownload(false);
       }
     })();
   }, []);
@@ -61,12 +65,17 @@ const ProductPage = () => {
       <div className={styles.product__info}>
         <div className={styles.photo}>
           <div className={styles.photo__mainPhoto}>
-            <img
-              src={mainImage || productData?.thumbnail}
-              alt="Product photo"
-            />
+            {download && <Preloader />}
+            {!download && (
+              <img
+                src={mainImage || productData?.thumbnail}
+                loading="lazy"
+                alt="Product photo"
+              />
+            )}
           </div>
           <div className={styles.photo__miniPhotos}>
+            {download && <Preloader />}
             {productData &&
               productData.images.map((image, idx) => (
                 <div
@@ -76,6 +85,7 @@ const ProductPage = () => {
                 >
                   <img
                     src={image}
+                    loading="lazy"
                     onClick={onImageClickHandler}
                   />
                 </div>

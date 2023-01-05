@@ -24,6 +24,7 @@ const GoodsCard: FC<IGoodsCardProps> = (props) => {
           <img
             className={styles.goodsCard__image}
             src={thumbnail}
+            loading="lazy"
             alt="Goods image"
           />
         </div>
