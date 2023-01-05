@@ -21,10 +21,12 @@ module.exports = (env, options) => {
     output: {
       path: path.resolve(__dirname, './dist'),
       filename: '[name].[contenthash:8].js',
+      publicPath: '/',
     },
     devServer: {
       open: true,
       port: 'auto',
+      historyApiFallback: true,
       hot: true,
     },
     module: {
