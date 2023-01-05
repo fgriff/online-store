@@ -1,12 +1,6 @@
-@import '../../scss/variables.scss';
+@import '../../../scss/variables.scss';
 
-.view {
-  width: 130px;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+.layout {
   &__label {
     width: 60px;
     height: 100%;
@@ -26,7 +20,7 @@
   &__input {
     display: none;
 
-    &:checked + .view__icon {
+    &:checked + .layout__icon {
       color: $color-button;
     }
   }

@@ -35,3 +35,15 @@ button {
   cursor: pointer;
   padding: 0;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: $color-main-bg;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $color-card-bg;
+  border-radius: 3px;
+}

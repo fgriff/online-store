@@ -6,6 +6,10 @@
     justify-content: space-between;
   }
 
+  &__name {
+    color: lighten($color-text, 35%);
+  }
+
   &__count {
     color: $color-text;
   }
@@ -22,6 +26,11 @@
     &:hover {
       color: $color-input-checked;
       cursor: pointer;
+
+      .checkboxFilter__name {
+        color: $color-input-checked;
+        cursor: pointer;
+      }
     }
   }
 

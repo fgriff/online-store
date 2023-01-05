@@ -1,20 +1,27 @@
-export interface ICheckboxFiltersData {
+import { IProductsItem } from './products';
+
+export interface ICheckboxFiltersProps {
   title: string;
-  data: ICheckboxFilterData[];
+  data: ICheckboxFilterProps[];
 }
 
-export interface ICheckboxFilterData {
-  id: number;
+interface ICheckboxFilterProps {
   name: string;
   totalCount: number;
   selectedCount: number;
 }
 
-export interface IDualFilterData {
+export interface ICheckboxFilterItemProps {
+  data: { name: string; totalCount: number; selectedCount: number };
+  isChecked: boolean;
+  onChangeHandler: (value: string, isChecked: boolean) => void;
+}
+
+export interface IDualFilterProps {
   title: string;
   min: number;
   max: number;
-  sign?: boolean;
+  children?: JSX.Element;
 }
 
 export interface IGoodsCardData {
@@ -30,6 +37,6 @@ export interface IGoodsListProps {
 }
 
 export interface IGoodsCardProps {
-  data: IGoodsCardData;
+  data: IProductsItem;
   layout: string;
 }

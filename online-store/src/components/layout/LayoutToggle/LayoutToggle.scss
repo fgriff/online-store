@@ -1,0 +1,9 @@
+@import '../../../scss/variables.scss';
+
+.layout {
+  width: 130px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

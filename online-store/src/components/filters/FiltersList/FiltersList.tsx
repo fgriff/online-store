@@ -2,31 +2,61 @@ import React from 'react';
 import styles from './FiltersList.module.scss';
 import CheckboxFilter from '../CheckboxFilter/CheckboxFilter';
 import DualFilter from '../DualFilter/DualFilter';
-import mockBrands from '../../../assets/mocks/brands';
-import mockCategories from '../../../assets/mocks/categories';
+import EuroIcon from '@mui/icons-material/Euro';
+import { useTypedSelector } from '../../../redux/hooks';
+import FilterButtons from '../../FilterButtons/FilterButtons';
 
 const FiltersList = () => {
+  const { brands, categories, price, stock } = useTypedSelector(
+    ({ filters }) => {
+      const brands = Object.entries(filters.initialProductsCount.brand).map(
+        ([name, totalCount]) => ({
+          name,
+          selectedCount: filters.filteredProductsCount.brand[name] || 0,
+          totalCount,
+        }),
+      );
+
+      const categories = Object.entries(
+        filters.initialProductsCount.category,
+      ).map(([name, totalCount]) => ({
+        name,
+        selectedCount: filters.filteredProductsCount.category[name] || 0,
+        totalCount,
+      }));
+
+      return {
+        brands,
+        categories,
+        price: filters.initialProductsCount.price,
+        stock: filters.initialProductsCount.stock,
+      };
+    },
+  );
+
   return (
     <div className={styles.filters}>
       <CheckboxFilter
         title={'Brand'}
-        data={mockBrands}
+        data={brands}
       />
       <CheckboxFilter
         title={'Category'}
-        data={mockCategories}
+        data={categories}
       />
       <DualFilter
         title="Price"
-        min={10}
-        max={2000}
-      />
+        min={price[0]}
+        max={price[1]}
+      >
+        <EuroIcon />
+      </DualFilter>
       <DualFilter
         title="Stock"
-        min={2}
-        max={200}
-        sign={true}
+        min={stock[0]}
+        max={stock[1]}
       />
+      <FilterButtons />
     </div>
   );
 };

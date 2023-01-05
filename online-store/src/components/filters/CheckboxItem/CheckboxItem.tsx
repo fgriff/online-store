@@ -1,17 +1,25 @@
 import React, { FC } from 'react';
-import { ICheckboxFilterData } from '../../../types/goods';
+import { ICheckboxFilterItemProps } from '../../../types/goods';
 import styles from './CheckboxItem.scss';
 
-const CheckboxItem: FC<ICheckboxFilterData> = (props) => {
-  const { name, selectedCount, totalCount } = props;
+const CheckboxItem: FC<ICheckboxFilterItemProps> = (props) => {
+  const {
+    data: { name, selectedCount, totalCount },
+    isChecked,
+    onChangeHandler,
+  } = props;
 
   return (
     <li className={styles.checkboxFilter__item}>
       <label className={styles.item__wrapper}>
-        {name.toLowerCase()}
+        <span className={selectedCount && styles.checkboxFilter__name}>
+          {name.toLowerCase()}
+        </span>
         <input
           type="checkbox"
           className={styles.item__input}
+          checked={isChecked}
+          onChange={() => onChangeHandler(name, isChecked)}
         />
         <span className={styles.checkbox}></span>
       </label>
