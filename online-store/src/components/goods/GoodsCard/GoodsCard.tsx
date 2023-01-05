@@ -4,13 +4,17 @@ import styles from './GoodsCard.scss';
 import StarIcon from '@mui/icons-material/Star';
 import EuroIcon from '@mui/icons-material/Euro';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 const GoodsCard: FC<IGoodsCardProps> = (props) => {
-  const { title, description, price, rating, thumbnail } = props.data;
+  const { id, title, description, price, rating, thumbnail } = props.data;
   const { layout } = props;
 
   return (
-    <div className={`${styles[layout]}`}>
+    <Link
+      to={`/product-details/${id}`}
+      className={`${styles[layout]}`}
+    >
       <div className={styles.goodsCard}>
         <div className={styles.goodsCard__rating}>
           <StarIcon />
@@ -45,7 +49,7 @@ const GoodsCard: FC<IGoodsCardProps> = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
