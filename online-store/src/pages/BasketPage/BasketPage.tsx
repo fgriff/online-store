@@ -2,9 +2,11 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import style from './BasketPage.scss';
 import BasketList from '../../components/basket/BasketList/BasketList';
 import BasketSummary from '../../components/basket/BasketSummary/BasketSummary';
+import Modal from '../../components/Modal/Modal';
 import { IProductsState, ITotal } from '../../types/basket';
 
 import productsStorage from '../../assets/mocks/storage-mock';
+import FormProductRegistration from '../../components/basket/FormProductRegistration/FormProductRegistration';
 const basketContent = [1, 2, 3, 4, 10];
 localStorage.setItem('basketContent', JSON.stringify(basketContent));
 
@@ -17,6 +19,7 @@ function BasketPage() {
     totalSum: 0,
     totalProducts: 0,
   });
+  const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
     const localBasket = localStorage.getItem('basketContent');
@@ -99,7 +102,14 @@ function BasketPage() {
       <BasketSummary
         totalProducts={total.totalProducts}
         totalSum={total.totalSum}
+        onClick={setModalActive}
       />
+      <Modal
+        isActive={modalActive}
+        setActive={setModalActive}
+      >
+        <FormProductRegistration />
+      </Modal>
     </div>
   );
 }
