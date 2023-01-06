@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import style from './FormProductRegistration.scss';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import logoCard from '../../../assets/img/png/icon-card.png';
 import logoAExpress from '../../../assets/img/png/icon-AExpress.png';
@@ -20,7 +20,6 @@ interface IFormInputs {
   cardNumber: string;
   valid: string;
   cvv: string;
-  isDeveloper: boolean;
 }
 
 function FormProductRegistration() {
@@ -102,7 +101,7 @@ function FormProductRegistration() {
   const regexpCardNum = /\d{4}\s\d{4}\s\d{4}\s\d{4}/;
   const regexpValid = /(0[1-9]|1[0-2])\/[0-9]{2}/;
 
-  const onSubmit = (data: IFormInputs) => {
+  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
     setCardNum('');
     setCardCVV('');
     setCardValid('');
@@ -134,9 +133,7 @@ function FormProductRegistration() {
             })}
             placeholder={'Your name'}
           />
-          <div className={style.error}>
-            {errors?.name && <p>{errors?.name?.message}</p>}
-          </div>
+          {errors.name && <p className={style.error}>{errors.name.message}</p>}
         </div>
 
         <div className={style.form__item}>
@@ -151,9 +148,9 @@ function FormProductRegistration() {
             })}
             placeholder={'Phone number'}
           />
-          <div className={style.error}>
-            {errors?.phone && <p>{errors?.phone?.message}</p>}
-          </div>
+          {errors.phone && (
+            <p className={style.error}>{errors.phone.message}</p>
+          )}
         </div>
 
         <div className={style.form__item}>
@@ -168,9 +165,9 @@ function FormProductRegistration() {
             })}
             placeholder={'Delivery address'}
           />
-          <div className={style.error}>
-            {errors?.address && <p>{errors?.address?.message}</p>}
-          </div>
+          {errors.address && (
+            <p className={style.error}>{errors.address.message}</p>
+          )}
         </div>
 
         <div className={style.form__item}>
@@ -185,9 +182,9 @@ function FormProductRegistration() {
             })}
             placeholder={'E-mail'}
           />
-          <div className={style.error}>
-            {errors?.email && <p>{errors?.email?.message || 'Error email'}</p>}
-          </div>
+          {errors.email && (
+            <p className={style.error}>{errors.email.message}</p>
+          )}
         </div>
 
         <div className={style.card}>
@@ -235,15 +232,15 @@ function FormProductRegistration() {
           </div>
 
           <div className={style.card__errors}>
-            <div className={style.error}>
-              {errors?.cardNumber && <p>{'Enter the correct card number'}</p>}
-            </div>
-            <div className={style.error}>
-              {errors?.valid && <p>{'Enter the correct Valid Thru'}</p>}
-            </div>
-            <div className={style.error}>
-              {errors?.cvv && <p>{'Enter the correct CVV'}</p>}
-            </div>
+            {errors.cardNumber && (
+              <p className={style.error}>{'Enter the correct card number'}</p>
+            )}
+            {errors.valid && (
+              <p className={style.error}>{'Enter the correct Valid Thru'}</p>
+            )}
+            {errors.cvv && (
+              <p className={style.error}>{'Enter the correct CVV'}</p>
+            )}
           </div>
         </div>
 
