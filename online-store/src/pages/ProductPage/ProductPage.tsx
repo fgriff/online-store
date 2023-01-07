@@ -1,6 +1,6 @@
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTypedSelector } from '../../redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { IProductsItem } from '../../types/products';
 import { URL } from '../../utils/constants';
 import { getProductDataById } from '../../utils/getProductDataById';
@@ -9,15 +9,21 @@ import EuroIcon from '@mui/icons-material/Euro';
 import Rating from '@mui/material/Rating';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Preloader from '../../components/Preloader/Preloader';
+import localStorage from '../../utils/localStorage';
+import classnames from 'classnames';
+import { decAllData, incAllData } from '../../redux/slices/headerSlice';
+import { ProductItem } from '../../types/header';
 
 const ProductPage = () => {
   const { id } = useParams();
   const [productData, setProductData] = useState<IProductsItem | undefined>(
     undefined,
   );
+  const dispatch = useTypedDispatch();
 
   const [mainImage, setMainImage] = useState<string>();
   const [download, setDownload] = useState<boolean>(true);
+  const [buttonLabel, setButtonLabel] = useState<string>('Add to cart');
 
   useTypedSelector(({ filters }) => {
     if (id && filters.filteredProducts.length && !productData) {
@@ -35,10 +41,45 @@ const ProductPage = () => {
         setDownload(false);
       }
     })();
+
+    if (localStorage.hasProduct(Number(id))) {
+      setButtonLabel('Remove from cart');
+    }
   }, []);
+
+  let newProductData: ProductItem = {};
+
+  useEffect(() => {
+    if (productData) {
+      newProductData = {
+        id: productData.id,
+        title: productData.title,
+        brand: productData.brand,
+        category: productData.category,
+        description: productData.description,
+        price: productData.price,
+        discountPercentage: productData.discountPercentage,
+        rating: productData.rating,
+        stock: productData.stock,
+        thumbnail: productData.thumbnail,
+      };
+    }
+  }, [productData, buttonLabel]);
 
   const onImageClickHandler = (e: MouseEvent<HTMLElement>) => {
     setMainImage((e.target as HTMLImageElement).currentSrc);
+  };
+
+  const onClickHandler = () => {
+    if (buttonLabel === 'Add to cart') {
+      localStorage.addProduct({ ...newProductData });
+      dispatch(incAllData({ price: newProductData.price }));
+      setButtonLabel('Remove from cart');
+    } else if (buttonLabel === 'Remove from cart') {
+      localStorage.removeProduct(Number(id));
+      dispatch(decAllData({ price: newProductData.price }));
+      setButtonLabel('Add to cart');
+    }
   };
 
   const theme = createTheme({
@@ -131,7 +172,19 @@ const ProductPage = () => {
             <span>Stock:</span> {productData && productData.stock}
           </p>
           <div className={styles.product__buttons}>
-            <button className={styles.product__button}>Add to cart</button>
+            <button
+              className={
+                buttonLabel === 'Add to cart'
+                  ? styles.product__button
+                  : classnames(
+                      styles.product__button,
+                      styles.product__button_added,
+                    )
+              }
+              onClick={() => onClickHandler()}
+            >
+              {buttonLabel}
+            </button>
             <button className={styles.product__button}>Buy now</button>
           </div>
         </div>
