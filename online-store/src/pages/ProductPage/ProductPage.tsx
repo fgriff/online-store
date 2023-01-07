@@ -4,7 +4,7 @@ import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { IProductsItem } from '../../types/products';
 import { URL } from '../../utils/constants';
 import { getProductDataById } from '../../utils/getProductDataById';
-import styles from './ProductPage.module.scss';
+import styles from './ProductPage.scss';
 import EuroIcon from '@mui/icons-material/Euro';
 import Rating from '@mui/material/Rating';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

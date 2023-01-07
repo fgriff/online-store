@@ -14,14 +14,11 @@
   }
 
   &__count {
-    width: 20px;
-    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: $color-input-checked;
-    color: $color-light;
+    color: $color-cart-count;
     font-size: 14px;
     position: absolute;
     top: -10px;

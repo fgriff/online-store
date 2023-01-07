@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useTypedDispatch } from '../../redux/hooks';
 import { resetFilters } from '../../redux/slices/filtersSlice';
-import styles from './FilterButtons.module.scss';
+import styles from './FilterButtons.scss';
 
 const FilterButtons = () => {
   const [copyLink, setCopyLink] = useState({
