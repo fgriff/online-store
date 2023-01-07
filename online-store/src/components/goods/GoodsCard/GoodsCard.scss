@@ -8,10 +8,6 @@
   overflow: hidden;
   position: relative;
 
-  &:hover {
-    cursor: pointer;
-  }
-
   &__rating,
   &__title,
   &__price,
@@ -22,6 +18,12 @@
   &__title,
   &__price {
     font-size: 18px;
+  }
+
+  &__title {
+    width: 100%;
+    height: 21px;
+    overflow: hidden;
   }
 
   &__rating {
@@ -47,18 +49,19 @@
   &__image {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 
   &__info {
-    padding: 20px 10px;
-    height: 100px;
+    padding: 10px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
   }
 
   & .info {
     &__leftSide,
     &__rightSide {
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -66,6 +69,7 @@
 
     &__leftSide {
       width: 65%;
+      justify-content: center;
       align-items: flex-start;
     }
 
@@ -74,24 +78,34 @@
     }
   }
 
-  &__description {
-    width: 100%;
-    color: $color-goods-description;
+  &__controls {
+    margin-top: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
   }
 
   &__price {
     display: flex;
-    line-height: 1.6rem;
+    font-size: 24px;
+    line-height: 2.4rem;
   }
 
   &__button {
     padding: 10px;
+    width: 135px;
     background-color: $color-button;
     border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
 
     &:hover {
       background-color: darken($color-button, 15%);
       cursor: pointer;
+    }
+
+    &_added {
+      background-color: $color-input-checked;
     }
   }
 }
@@ -104,19 +118,19 @@
           $count-goods-per-line
       )
   );
-  height: 320px;
+  height: 350px;
 }
 
 .list {
   width: 100%;
-  height: 200px;
+  height: 250px;
 
   .goodsCard {
     width: 100%;
     display: flex;
 
     &__imageWrapper {
-      width: 40%;
+      width: 350px;
       height: 100%;
     }
 
@@ -124,15 +138,21 @@
       padding-left: 20px;
       padding-right: 20px;
       width: 60%;
-      height: 80%;
     }
 
     &__title {
+      height: auto;
       font-size: 24px;
     }
 
     &__description {
+      margin-top: 20px;
+      color: $color-goods-description;
       font-size: 18px;
+    }
+    &__controls {
+      margin-top: 20px;
+      height: 85px;
     }
 
     &__price {
@@ -142,7 +162,8 @@
 
     &__button {
       padding: 10px 20px;
-      font-size: 18px;
+      width: 170px;
+      font-size: 16px;
     }
 
     & .info {
