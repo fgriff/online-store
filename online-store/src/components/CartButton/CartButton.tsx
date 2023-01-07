@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './CartButton.scss';
 import logoIcon from '../../assets/img/png/cart.png';
 import { Link } from 'react-router-dom';
+import { ICartButtonProps } from '../../types/header';
 
-const CartButton = () => {
+const CartButton: FC<ICartButtonProps> = (props) => {
+  const { totalProducts } = props;
+
   return (
     <div className={styles.cartButton}>
       <Link to={'/cart'}>
@@ -14,7 +17,7 @@ const CartButton = () => {
         />
       </Link>
 
-      <div className={styles.cartButton__count}>5</div>
+      <div className={styles.cartButton__count}>{totalProducts}</div>
     </div>
   );
 };
