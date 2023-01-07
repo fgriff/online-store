@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import style from './FormProductRegistration.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { isValidPhoneNumber } from 'react-phone-number-input';
+import { useNavigate } from 'react-router-dom';
 
 import logoCard from '../../../assets/img/png/icon-card.png';
 import logoAExpress from '../../../assets/img/png/icon-AExpress.png';
@@ -8,7 +10,6 @@ import logoMir from '../../../assets/img/png/icon-mir.png';
 import logoMastercard from '../../../assets/img/png/logo-mastercard.png';
 import logoUnionPay from '../../../assets/img/png/logo-unionPay.png';
 import logoVisa from '../../../assets/img/png/logo-visa.png';
-import { useNavigate } from 'react-router-dom';
 
 type IEventHandler = React.ChangeEvent<HTMLInputElement>;
 
@@ -29,7 +30,7 @@ function FormProductRegistration() {
     handleSubmit,
     reset,
   } = useForm<IFormInputs>({
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   const [cardNum, setCardNum] = useState<string>('');
@@ -64,22 +65,22 @@ function FormProductRegistration() {
 
   const [cardIcon, setCardIcon] = useState(logoCard);
   useEffect(() => {
-    const firstLetter = Number(cardNum.at(0));
+    const firstLetter = cardNum[0];
     let urlIcon;
     switch (firstLetter) {
-      case 2:
+      case '2':
         urlIcon = logoMir;
         break;
-      case 3:
+      case '3':
         urlIcon = logoAExpress;
         break;
-      case 4:
+      case '4':
         urlIcon = logoVisa;
         break;
-      case 5:
+      case '5':
         urlIcon = logoMastercard;
         break;
-      case 6:
+      case '6':
         urlIcon = logoUnionPay;
         break;
       default:
@@ -96,8 +97,6 @@ function FormProductRegistration() {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const regexpName = /[a-z|а-я]{3,}\s[a-z|а-я]{3,}/i;
   const regexpAddress = /[a-z|а-я]{5,}\s[a-z|а-я]{5,}\s[a-z|а-я]{5,}/i;
-  const regexpPhone =
-    /^(\+)((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){9,12}\d$/;
   const regexpCardNum = /\d{4}\s\d{4}\s\d{4}\s\d{4}/;
   const regexpValid = /(0[1-9]|1[0-2])\/[0-9]{2}/;
 
@@ -114,6 +113,23 @@ function FormProductRegistration() {
     }, 3000);
   };
 
+  const enum ErrorMsg {
+    nameReq = 'Enter your name',
+    nameCor = 'Enter the name in the format: first-name last-name',
+    phoneReq = 'Enter your phone number',
+    phoneCor = 'Enter the correct phone number',
+    addressReq = 'Enter your delivery address',
+    addressCor = 'Enter your 3-word address',
+    emailReq = 'Enter your email',
+    emailCor = 'Enter the correct email address',
+    cardNumber = 'Enter the correct card number',
+    cardNumberReq = 'Enter card number',
+    cardValidThru = 'Enter the correct Valid Thru',
+    cardValidThruReq = 'Enter Valid Thru',
+    cardCVV = 'Enter the correct CVV',
+    cardCVVReq = 'Enter cvv',
+  }
+
   return (
     <div className={style.wrapper}>
       <h2 className={style.title}>Personal details</h2>
@@ -125,10 +141,10 @@ function FormProductRegistration() {
           <input
             className={style.input}
             {...register('name', {
-              required: 'Enter your name',
+              required: ErrorMsg.nameReq,
               pattern: {
                 value: regexpName,
-                message: 'Enter the name in the format: first-name last-name',
+                message: ErrorMsg.nameCor,
               },
             })}
             placeholder={'Your name'}
@@ -140,10 +156,9 @@ function FormProductRegistration() {
           <input
             className={style.input}
             {...register('phone', {
-              required: 'Enter your phone number',
-              pattern: {
-                value: regexpPhone,
-                message: 'Phone in the format +1 123 456 78 90',
+              required: ErrorMsg.phoneReq,
+              validate: {
+                cor: (value) => isValidPhoneNumber(value) || ErrorMsg.phoneCor,
               },
             })}
             placeholder={'Phone number'}
@@ -157,10 +172,10 @@ function FormProductRegistration() {
           <input
             className={style.input}
             {...register('address', {
-              required: 'Enter your delivery address',
+              required: ErrorMsg.addressReq,
               pattern: {
                 value: regexpAddress,
-                message: 'Enter your 3-word address',
+                message: ErrorMsg.addressCor,
               },
             })}
             placeholder={'Delivery address'}
@@ -172,12 +187,13 @@ function FormProductRegistration() {
 
         <div className={style.form__item}>
           <input
+            type={'email'}
             className={style.input}
             {...register('email', {
-              required: 'Enter your email',
+              required: ErrorMsg.emailReq,
               pattern: {
                 value: regexpEmail,
-                message: 'Enter the correct email address',
+                message: ErrorMsg.emailCor,
               },
             })}
             placeholder={'E-mail'}
@@ -197,7 +213,7 @@ function FormProductRegistration() {
             <input
               className={style.input}
               {...register('cardNumber', {
-                required: 'Enter card number',
+                required: ErrorMsg.cardNumberReq,
                 pattern: regexpCardNum,
                 maxLength: 19,
               })}
@@ -210,7 +226,7 @@ function FormProductRegistration() {
             <input
               className={style.input}
               {...register('valid', {
-                required: 'Enter Valid Thru',
+                required: ErrorMsg.cardValidThruReq,
                 pattern: regexpValid,
                 minLength: 5,
               })}
@@ -222,7 +238,7 @@ function FormProductRegistration() {
             <input
               className={style.input}
               {...register('cvv', {
-                required: 'Enter cvv',
+                required: ErrorMsg.cardCVVReq,
                 minLength: 3,
               })}
               placeholder={'CVV'}
@@ -233,14 +249,12 @@ function FormProductRegistration() {
 
           <div className={style.card__errors}>
             {errors.cardNumber && (
-              <p className={style.error}>{'Enter the correct card number'}</p>
+              <p className={style.error}>{ErrorMsg.cardNumber}</p>
             )}
             {errors.valid && (
-              <p className={style.error}>{'Enter the correct Valid Thru'}</p>
+              <p className={style.error}>{ErrorMsg.cardValidThru}</p>
             )}
-            {errors.cvv && (
-              <p className={style.error}>{'Enter the correct CVV'}</p>
-            )}
+            {errors.cvv && <p className={style.error}>{ErrorMsg.cardCVV}</p>}
           </div>
         </div>
 

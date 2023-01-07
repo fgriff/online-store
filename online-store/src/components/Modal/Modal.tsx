@@ -6,7 +6,6 @@ interface IModal {
   children: React.ReactNode;
   isActive: boolean;
   setActive: (active: boolean) => void;
-  // onClick?: () => void;
 }
 
 const Modal: FC<IModal> = (props) => {
