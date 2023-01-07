@@ -23,7 +23,7 @@ class LocalStorageState implements ILocalStorage {
       return JSON.parse(data);
     }
 
-    return [];
+    return undefined;
   }
 
   addProduct(newProduct: ProductItem) {
