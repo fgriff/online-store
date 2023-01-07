@@ -24,7 +24,7 @@ export interface ILocalStorageProduct {
 
 export interface ILocalStorage {
   productCards: ILocalStorageProduct[];
-  isData(): boolean;
+  isNotEmpty(): boolean;
   getProducts(key: string): ILocalStorageProduct[];
   addProduct(product: ProductItem): void;
   removeProduct(id: number): void;

@@ -12,7 +12,7 @@ class LocalStorageState implements ILocalStorage {
     this.productCards = this.getProducts(LOCAL_STORAGE_NAME);
   }
 
-  isData() {
+  isNotEmpty() {
     return this.productCards.length > 0;
   }
 
