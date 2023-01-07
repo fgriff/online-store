@@ -8,34 +8,14 @@ import { Link } from 'react-router-dom';
 import { useTypedDispatch } from '../../../redux/hooks';
 import { decAllData, incAllData } from '../../../redux/slices/headerSlice';
 import localStorage from '../../../utils/localStorage';
+import { ProductItem } from '../../../types/header';
 
 const GoodsCard: FC<IGoodsCardProps> = (props) => {
-  const {
-    id,
-    title,
-    brand,
-    category,
-    description,
-    price,
-    discountPercentage,
-    rating,
-    stock,
-    thumbnail,
-  } = props.data;
+  const { id, title, description, price, rating, thumbnail } = props.data;
   const { layout } = props;
 
-  const newProductData = {
-    id,
-    title,
-    brand,
-    category,
-    description,
-    price,
-    discountPercentage,
-    rating,
-    stock,
-    thumbnail,
-  };
+  const newProductData = { ...props.data } as ProductItem;
+  delete newProductData.images;
 
   const [buttonLabel, setButtonLabel] = useState('Add to cart');
   const dispatch = useTypedDispatch();
@@ -48,7 +28,7 @@ const GoodsCard: FC<IGoodsCardProps> = (props) => {
 
   const onClickHandler = () => {
     if (buttonLabel === 'Add to cart') {
-      localStorage.addProduct({ ...newProductData });
+      localStorage.addProduct(newProductData);
       dispatch(incAllData({ price }));
       setButtonLabel('Remove from cart');
     } else if (buttonLabel === 'Remove from cart') {

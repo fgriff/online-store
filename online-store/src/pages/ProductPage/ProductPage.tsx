@@ -51,18 +51,8 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (productData) {
-      newProductData = {
-        id: productData.id,
-        title: productData.title,
-        brand: productData.brand,
-        category: productData.category,
-        description: productData.description,
-        price: productData.price,
-        discountPercentage: productData.discountPercentage,
-        rating: productData.rating,
-        stock: productData.stock,
-        thumbnail: productData.thumbnail,
-      };
+      newProductData = { ...productData };
+      delete newProductData.images;
     }
   }, [productData, buttonLabel]);
 
@@ -72,7 +62,7 @@ const ProductPage = () => {
 
   const onClickHandler = () => {
     if (buttonLabel === 'Add to cart') {
-      localStorage.addProduct({ ...newProductData });
+      localStorage.addProduct(newProductData);
       dispatch(incAllData({ price: newProductData.price }));
       setButtonLabel('Remove from cart');
     } else if (buttonLabel === 'Remove from cart') {
