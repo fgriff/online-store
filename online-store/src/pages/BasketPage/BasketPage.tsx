@@ -105,8 +105,8 @@ function BasketPage() {
         onClick={setModalActive}
       />
       <Modal
-        isActive={modalActive}
-        setActive={setModalActive}
+        isOpen={modalActive}
+        setModalState={setModalActive}
       >
         <FormProductRegistration />
       </Modal>

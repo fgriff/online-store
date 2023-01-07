@@ -1,45 +1,63 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import style from './Modal.scss';
 import classnames from 'classnames';
 
 interface IModal {
   children: React.ReactNode;
-  isActive: boolean;
-  setActive: (active: boolean) => void;
+  isOpen: boolean;
+  setModalState: (active: boolean) => void;
 }
 
 const Modal: FC<IModal> = (props) => {
-  const { isActive, setActive, children } = props;
+  const { isOpen, setModalState, children } = props;
 
-  const stopScroll = useCallback(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const element: HTMLDivElement = useMemo(
+    () => document.createElement('div'),
+    [],
+  );
+
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (isActive) {
-      window.addEventListener('scroll', stopScroll);
-    } else window.removeEventListener('scroll', stopScroll);
-  }, [isActive]);
+    if (isOpen) setIsVisible(true);
+    document.body.appendChild(element);
+    return () => {
+      document.body.removeChild(element);
+    };
+  }, [isOpen]);
 
-  return (
-    <div
-      className={
-        isActive ? classnames(style.modal, style.modal__active) : style.modal
-      }
-      onClick={() => setActive(false)}
-    >
-      <div
-        className={
-          isActive
-            ? classnames(style.content, style.content__active)
-            : style.content
-        }
-        onClick={(e) => e.stopPropagation()}
-      >
-        {children}
-      </div>
-    </div>
-  );
+  const closeHandler = () => {
+    setIsVisible(false);
+    setTimeout(() => {
+      setModalState(false);
+    }, 300);
+  };
+
+  return isOpen
+    ? createPortal(
+        <div
+          className={
+            isVisible
+              ? classnames(style.modal, style.modal__visible)
+              : style.modal
+          }
+          onClick={closeHandler}
+        >
+          <div
+            className={
+              isVisible
+                ? classnames(style.content, style.content__visible)
+                : style.content
+            }
+            onClick={(e) => e.stopPropagation()}
+          >
+            {children}
+          </div>
+        </div>,
+        element,
+      )
+    : null;
 };
 
 export default Modal;
