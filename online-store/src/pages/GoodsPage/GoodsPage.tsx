@@ -6,13 +6,11 @@ import GoodsHeader from '../../components/goods/GoodsHeader/GoodsHeader';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { getProductsTotalCount } from '../../utils/productsCount';
 import {
-  resetFilters,
   setFilteredData,
   setInitialData,
 } from '../../redux/slices/filtersSlice';
 import { filterData } from '../../utils/filterData';
 import database from '../../assets/mocks/storage-mock';
-import { useSearchParams } from 'react-router-dom';
 
 const GoodsPage = () => {
   const {
@@ -24,15 +22,7 @@ const GoodsPage = () => {
 
   const dispatch = useTypedDispatch();
 
-  const [searchParams] = useSearchParams();
-
   useEffect(() => {
-    const keys = [...searchParams.keys()];
-
-    if (!keys.length) {
-      dispatch(resetFilters());
-    }
-
     const initialCount = getProductsTotalCount(database);
 
     dispatch(setInitialData({ initialCount, initialProducts: database }));
