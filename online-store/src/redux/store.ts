@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import filtersReducer from './slices/filtersSlice';
-import headerReducer from './slices/headerSlice';
+import basketReducer from './slices/basketSlice';
 
 const rootReducer = combineReducers({
   filters: filtersReducer,
-  header: headerReducer,
+  basket: basketReducer,
 });
 
 export const store = configureStore({

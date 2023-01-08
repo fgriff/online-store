@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styles from './CartButton.scss';
 import logoIcon from '../../assets/img/png/cart.png';
 import { Link } from 'react-router-dom';
-import { ICartButtonProps } from '../../types/header';
+import { ICartButtonProps } from '../../types/basket';
 
 const CartButton: FC<ICartButtonProps> = (props) => {
   const { totalProducts } = props;

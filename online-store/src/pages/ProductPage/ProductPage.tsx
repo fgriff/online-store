@@ -2,7 +2,6 @@ import React, { MouseEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { IProductsItem } from '../../types/products';
-import { URL } from '../../utils/constants';
 import { getProductDataById } from '../../utils/getProductDataById';
 import styles from './ProductPage.scss';
 import EuroIcon from '@mui/icons-material/Euro';
@@ -11,8 +10,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Preloader from '../../components/Preloader/Preloader';
 import localStorage from '../../utils/localStorage';
 import classnames from 'classnames';
-import { decAllData, incAllData } from '../../redux/slices/headerSlice';
-import { ProductItem } from '../../types/header';
+import { addProduct, removeProduct } from '../../redux/slices/basketSlice';
+import database from '../../assets/mocks/storage-mock';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -33,42 +32,31 @@ const ProductPage = () => {
   });
 
   useEffect(() => {
-    (async () => {
-      if (!productData) {
-        const response = await fetch(URL);
-        const dataBase = await response.json();
-        setProductData(getProductDataById(Number(id), dataBase.products));
-        setDownload(false);
-      }
-    })();
+    if (!productData) {
+      setProductData(getProductDataById(Number(id), database));
+      setDownload(false);
+    }
 
     if (localStorage.hasProduct(Number(id))) {
       setButtonLabel('Remove from cart');
     }
   }, []);
 
-  let newProductData: ProductItem = {};
-
-  useEffect(() => {
-    if (productData) {
-      newProductData = { ...productData };
-      delete newProductData.images;
-    }
-  }, [productData, buttonLabel]);
-
   const onImageClickHandler = (e: MouseEvent<HTMLElement>) => {
     setMainImage((e.target as HTMLImageElement).currentSrc);
   };
 
   const onClickHandler = () => {
-    if (buttonLabel === 'Add to cart') {
-      localStorage.addProduct(newProductData);
-      dispatch(incAllData({ price: newProductData.price }));
-      setButtonLabel('Remove from cart');
-    } else if (buttonLabel === 'Remove from cart') {
-      localStorage.removeProduct(Number(id));
-      dispatch(decAllData({ price: newProductData.price }));
-      setButtonLabel('Add to cart');
+    if (productData && id) {
+      if (buttonLabel === 'Add to cart') {
+        localStorage.addProduct(Number(id));
+        dispatch(addProduct({ price: productData.price }));
+        setButtonLabel('Remove from cart');
+      } else if (buttonLabel === 'Remove from cart') {
+        localStorage.removeProduct(Number(id));
+        dispatch(removeProduct({ price: productData.price }));
+        setButtonLabel('Add to cart');
+      }
     }
   };
 

@@ -6,16 +6,12 @@ import EuroIcon from '@mui/icons-material/Euro';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { useTypedDispatch } from '../../../redux/hooks';
-import { decAllData, incAllData } from '../../../redux/slices/headerSlice';
 import localStorage from '../../../utils/localStorage';
-import { ProductItem } from '../../../types/header';
+import { addProduct, removeProduct } from '../../../redux/slices/basketSlice';
 
 const GoodsCard: FC<IGoodsCardProps> = (props) => {
   const { id, title, description, price, rating, thumbnail } = props.data;
   const { layout } = props;
-
-  const newProductData = { ...props.data } as ProductItem;
-  delete newProductData.images;
 
   const [buttonLabel, setButtonLabel] = useState('Add to cart');
   const dispatch = useTypedDispatch();
@@ -28,12 +24,12 @@ const GoodsCard: FC<IGoodsCardProps> = (props) => {
 
   const onClickHandler = () => {
     if (buttonLabel === 'Add to cart') {
-      localStorage.addProduct(newProductData);
-      dispatch(incAllData({ price }));
+      localStorage.addProduct(id);
+      dispatch(addProduct({ price }));
       setButtonLabel('Remove from cart');
     } else if (buttonLabel === 'Remove from cart') {
       localStorage.removeProduct(id);
-      dispatch(decAllData({ price }));
+      dispatch(removeProduct({ price }));
       setButtonLabel('Add to cart');
     }
   };

@@ -1,19 +1,20 @@
-import {
-  ILocalStorage,
-  ILocalStorageProduct,
-  ProductItem,
-} from '../types/header';
+import { ILocalStorage, ILocalStorageProduct } from '../types/localStorage';
+import { IProductsItem } from '../types/products';
 import { LOCAL_STORAGE_NAME } from './constants';
 
 class LocalStorageState implements ILocalStorage {
-  productCards: ILocalStorageProduct[] = [];
+  products: ILocalStorageProduct[] = [];
 
   constructor() {
-    this.productCards = this.getProducts(LOCAL_STORAGE_NAME);
+    this.products = this.getProducts(LOCAL_STORAGE_NAME);
   }
 
   isNotEmpty() {
-    return this.productCards.length > 0;
+    return this.products.length > 0;
+  }
+
+  hasProduct(id: number) {
+    return this.products.findIndex((product) => product.id === id) !== -1;
   }
 
   getProducts(key: string) {
@@ -23,90 +24,66 @@ class LocalStorageState implements ILocalStorage {
       return JSON.parse(data);
     }
 
-    return undefined;
+    return [];
   }
 
-  addProduct(newProduct: ProductItem) {
-    const idx = this.productCards.findIndex(
-      (product) => product.productData.id === newProduct.id,
+  addProduct(newProductId: number) {
+    const idx = this.products.findIndex(
+      (product) => product.id === newProductId,
     );
 
     if (idx === -1) {
-      this.productCards.push({
+      this.products.push({
+        id: newProductId,
         count: 1,
-        productData: newProduct,
       });
     } else {
-      this.productCards[idx].count += 1;
+      this.products[idx].count += 1;
     }
 
-    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.productCards));
+    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.products));
   }
 
-  removeProduct(id: number) {
-    const idx = this.productCards.findIndex(
-      (product) => product.productData.id === id,
+  removeProduct(productId: number) {
+    const idx = this.products.findIndex((product) => product.id === productId);
+
+    if (idx !== -1) {
+      this.products.splice(idx, 1);
+    }
+
+    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.products));
+  }
+}
+
+export const filterData = (
+  database: IProductsItem[],
+  localStorageData: ILocalStorageProduct[],
+) => {
+  return database.filter((product) => {
+    return (
+      localStorageData.find(
+        (savedProduct) => product.id === savedProduct.id,
+      ) !== undefined
+    );
+  });
+};
+
+export const modifiedData = (
+  filteredDatabase: IProductsItem[],
+  localStorageData: ILocalStorageProduct[],
+) => {
+  return filteredDatabase.map((product) => {
+    const idx = localStorageData.findIndex(
+      (savedProduct) => product.id === savedProduct.id,
     );
 
     if (idx !== -1) {
-      this.productCards.splice(idx, 1);
+      return {
+        count: localStorageData[idx].count,
+        price: product.price,
+      };
     }
-
-    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.productCards));
-  }
-
-  hasProduct(id: number) {
-    return (
-      this.productCards.findIndex(
-        (product) => product.productData.id === id,
-      ) !== -1
-    );
-  }
-
-  incProductCount(id: number) {
-    this.productCards = this.productCards.map((product) => {
-      if (product.productData.id === id) {
-        product.count += 1;
-        return product;
-      }
-
-      return product;
-    });
-
-    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.productCards));
-  }
-
-  decProductCount(id: number) {
-    this.productCards = this.productCards.map((product) => {
-      if (product.productData.id === id) {
-        product.count -= 1;
-        return product;
-      }
-
-      return product;
-    });
-
-    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.productCards));
-  }
-
-  getProductsCount() {
-    return this.productCards.reduce(
-      (count, product) => count + (product.count as number),
-      0,
-    );
-  }
-
-  getTotalPrice() {
-    return this.productCards.reduce(
-      (sum, product) => sum + (product.productData.price as number),
-      0,
-    );
-  }
-
-  clearProducts() {
-    this.productCards.length = 0;
-    localStorage.clear();
-  }
-}
+  });
+};
 
 export default new LocalStorageState();
