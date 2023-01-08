@@ -38,14 +38,16 @@ const filtersSlice = createSlice({
       const value = action.payload.value.toLowerCase();
       const filterName = state.filterValues[title] as string[];
 
-      if (action.payload.isChecked) {
-        const idx = filterName.indexOf(value);
+      const idx = filterName.indexOf(value);
 
+      if (action.payload.isChecked) {
         if (idx !== -1) {
           filterName.splice(idx, 1);
         }
       } else {
-        filterName.push(value);
+        if (idx === -1) {
+          filterName.push(value);
+        }
       }
 
       state.isNotPriceSlider = false;
