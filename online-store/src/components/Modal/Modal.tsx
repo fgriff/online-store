@@ -12,10 +12,7 @@ interface IModal {
 const Modal: FC<IModal> = (props) => {
   const { isOpen, setModalState, children } = props;
 
-  const element: HTMLDivElement = useMemo(
-    () => document.createElement('div'),
-    [],
-  );
+  const element = useMemo(() => document.createElement('div'), []);
 
   const [isVisible, setIsVisible] = useState(false);
 
