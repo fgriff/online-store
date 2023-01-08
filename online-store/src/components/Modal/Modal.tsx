@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import style from './Modal.scss';
 import classnames from 'classnames';
@@ -6,22 +6,16 @@ import classnames from 'classnames';
 interface IModal {
   children: React.ReactNode;
   isOpen: boolean;
-  setModalState: (active: boolean) => void;
+  setModalState: (isOpen: boolean) => void;
 }
 
-const Modal: FC<IModal> = (props) => {
+function Modal(props: IModal) {
   const { isOpen, setModalState, children } = props;
-
-  const element = useMemo(() => document.createElement('div'), []);
 
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (isOpen) setIsVisible(true);
-    document.body.appendChild(element);
-    return () => {
-      document.body.removeChild(element);
-    };
   }, [isOpen]);
 
   const closeHandler = () => {
@@ -52,9 +46,9 @@ const Modal: FC<IModal> = (props) => {
             {children}
           </div>
         </div>,
-        element,
+        document.body,
       )
     : null;
-};
+}
 
 export default Modal;
