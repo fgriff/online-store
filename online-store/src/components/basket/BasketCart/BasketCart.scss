@@ -16,7 +16,7 @@ $button-size: 2.5rem;
     height: $button-size;
     width: $button-size;
     font-size: $button-size;
-    color: $color-button;
+    color: $color-input-checked;
     transition: transform 0.2s;
 
     &:hover {
@@ -61,7 +61,7 @@ $button-size: 2.5rem;
   
   &__title {
     font-size: 2rem;
-    color: $color-button;
+    color: $color-input-checked;
     border-bottom: 1px solid $color-input-checked;
   }
   

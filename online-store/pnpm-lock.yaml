@@ -31,6 +31,7 @@ specifiers:
   prettier: ^2.8.1
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-hook-form: ^7.41.5
   react-redux: ^8.0.5
   react-router-dom: ^6.4.5
   redux: ^4.2.0
@@ -50,6 +51,7 @@ dependencies:
   '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.41.5_react@18.2.0
   react-redux: 8.0.5_6fpxtwwxc52cyvwzdgczt4jvpq
   react-router-dom: 6.5.0_biqbaboplfbrettd7655fr4n2y
   redux: 4.2.0
@@ -5230,6 +5232,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form/7.41.5_react@18.2.0:
+    resolution: {integrity: sha512-DAKjSJ7X9f16oQrP3TW2/eD9N6HOgrmIahP4LOdFphEWVfGZ2LulFd6f6AQ/YS/0cx/5oc4j8a1PXxuaurWp/Q==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:
