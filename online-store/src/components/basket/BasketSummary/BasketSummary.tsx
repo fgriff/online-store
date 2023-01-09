@@ -26,6 +26,7 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
         </div>
         <BasketInput />
         <button
+          disabled={totalProducts === 0}
           className={style.summary__button}
           onClick={() => onClick(true)}
         >

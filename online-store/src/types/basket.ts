@@ -62,4 +62,5 @@ export interface IBasketProduct {
 export interface IBasketState {
   totalPrice: number;
   totalCount: number;
+  isModal: boolean;
 }

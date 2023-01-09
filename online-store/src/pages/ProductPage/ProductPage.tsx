@@ -1,5 +1,5 @@
 import React, { MouseEvent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { IProductsItem } from '../../types/products';
 import { getProductDataById } from '../../utils/getProductDataById';
@@ -10,7 +10,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Preloader from '../../components/Preloader/Preloader';
 import localStorage from '../../utils/localStorage';
 import classnames from 'classnames';
-import { addProduct, removeProduct } from '../../redux/slices/basketSlice';
+import {
+  addProduct,
+  openModal,
+  removeProduct,
+} from '../../redux/slices/basketSlice';
 import database from '../../assets/mocks/storage-mock';
 
 const ProductPage = () => {
@@ -75,9 +79,24 @@ const ProductPage = () => {
     },
   });
 
+  const navigate = useNavigate();
+
+  const onBuyClickHandler = () => {
+    if (id) {
+      const products = localStorage.products;
+      const index = products.findIndex((prod) => prod.id === Number(id));
+      if (index === -1) {
+        localStorage.addProduct(Number(id));
+        dispatch(addProduct({ price: productData?.price }));
+      }
+      dispatch(openModal({ open: true }));
+      navigate('/cart');
+    }
+  };
+
   return (
     <div className={styles.product}>
-      <div className={styles.product__breadСrumbs}>
+      <div className={styles.product__breadCrumbs}>
         {productData &&
           `store > ${productData.category} > ${productData.brand} > ${productData.title}`}
       </div>
@@ -163,7 +182,12 @@ const ProductPage = () => {
             >
               {buttonLabel}
             </button>
-            <button className={styles.product__button}>Buy now</button>
+            <button
+              className={styles.product__button}
+              onClick={onBuyClickHandler}
+            >
+              Buy now
+            </button>
           </div>
         </div>
       </div>

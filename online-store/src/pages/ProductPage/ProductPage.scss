@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &__breadСrumbs {
+  &__breadCrumbs {
     margin-bottom: 50px;
     height: 50px;
     font-size: 20px;
@@ -131,7 +131,7 @@
     }
 
     &:hover {
-      box-shadow: $color-input-checked 0px 2px 8px 0px;
+      box-shadow: $color-input-checked 0 2px 8px 0px;
       cursor: pointer;
     }
   }

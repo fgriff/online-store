@@ -2,39 +2,35 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import style from './BasketPage.scss';
 import BasketList from '../../components/basket/BasketList/BasketList';
 import BasketSummary from '../../components/basket/BasketSummary/BasketSummary';
+import FormProductRegistration from '../../components/basket/FormProductRegistration/FormProductRegistration';
 import Modal from '../../components/Modal/Modal';
 import { IProductsState, ITotal } from '../../types/basket';
+import { ILocalStorageProduct } from '../../types/localStorage';
 
 import productsStorage from '../../assets/mocks/storage-mock';
-import FormProductRegistration from '../../components/basket/FormProductRegistration/FormProductRegistration';
-const basketContent = [1, 2, 3, 4, 10];
-localStorage.setItem('basketContent', JSON.stringify(basketContent));
+import localStorage from '../../utils/localStorage';
+
+import { addProduct, removeProduct } from '../../redux/slices/basketSlice';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 
 function BasketPage() {
-  const [basketState, setBasketState] = useState<number[] | null>(null);
-  const [productsState, setProductsState] = useState<IProductsState | null>(
-    null,
-  );
+  const isModal = useTypedSelector(({ basket }) => basket.isModal);
+
+  const dispatch = useTypedDispatch();
+  useEffect(() => {
+    if (localStorage.isNotEmpty()) {
+      const savedData = localStorage.products;
+      const products = getBasketProduct(savedData);
+      setProductsState(products);
+    }
+  }, []);
+
+  const [productsState, setProductsState] = useState<IProductsState>({});
   const [total, setTotal] = useState<ITotal>({
     totalSum: 0,
     totalProducts: 0,
   });
   const [modalActive, setModalActive] = useState(false);
-
-  useEffect(() => {
-    const localBasket = localStorage.getItem('basketContent');
-    if (localBasket !== null) {
-      const basketContent = JSON.parse(localBasket);
-      setBasketState(basketContent);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (basketState !== null) {
-      const products = getBasketProduct(basketState);
-      setProductsState(products);
-    }
-  }, [basketState]);
 
   useLayoutEffect(() => {
     setTotal(() => {
@@ -48,34 +44,33 @@ function BasketPage() {
       }
       return { totalSum, totalProducts };
     });
-
-    if (productsState !== null) {
-      const basketContent = Object.keys(productsState);
-      localStorage.setItem('basketContent', JSON.stringify(basketContent));
-    }
   }, [productsState]);
 
-  const getBasketProduct = (arr: number[]): IProductsState => {
+  const getBasketProduct = (data: ILocalStorageProduct[]): IProductsState => {
     const res: IProductsState = {};
     productsStorage.forEach((prod) => {
-      if (arr.includes(prod.id)) {
-        res[prod.id] = { product: prod, quantity: 1 };
-      }
+      data.forEach((item) => {
+        if (item.id === prod.id) {
+          res[prod.id] = { product: prod, quantity: item.count };
+        }
+      });
     });
     return res;
   };
 
-  const incQuantityHandler = (id: number): void => {
+  const incQuantityHandler = (id: number, price: number): void => {
     if (productsState === null) return;
 
     const newProductsState = { ...productsState };
     const prod = newProductsState[id];
     prod.quantity += 1;
 
+    localStorage.addProduct(id);
+    dispatch(addProduct({ price }));
     setProductsState(newProductsState);
   };
 
-  const decQuantityHandler = (id: number): void => {
+  const decQuantityHandler = (id: number, price: number): void => {
     if (productsState === null) return;
 
     const newProductsState = { ...productsState };
@@ -85,12 +80,16 @@ function BasketPage() {
       delete newProductsState[id];
     }
 
+    localStorage.removeProduct(id);
+    dispatch(removeProduct({ price }));
     setProductsState(newProductsState);
   };
 
+  const hasProducts = Object.keys(productsState).length !== 0;
+
   return (
     <div className={style.basket}>
-      {productsState !== null ? (
+      {hasProducts ? (
         <BasketList
           basket={productsState}
           incQuantity={incQuantityHandler}
@@ -104,8 +103,9 @@ function BasketPage() {
         totalSum={total.totalSum}
         onClick={setModalActive}
       />
+      {}
       <Modal
-        isOpen={modalActive}
+        isOpen={modalActive || isModal}
         setModalState={setModalActive}
       >
         <FormProductRegistration />
