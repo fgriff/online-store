@@ -1,7 +1,7 @@
 @import '../../../scss/variables';
 
 .list {
-  margin: auto;
+  margin: 0 auto;
   width: 700px;
   color: $color-light;
 
@@ -81,5 +81,8 @@
     font-size: 2rem;
     margin: 0 15px;
     color: $color-input-checked;
+  }
+  &__total {
+    color: $color-text;
   }
 }

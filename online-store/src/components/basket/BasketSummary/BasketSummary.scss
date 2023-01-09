@@ -2,6 +2,7 @@
 
 .summary {
   margin: auto;
+  padding: 15px 0;
   color: $color-light;
 
   &__title {
@@ -40,6 +41,13 @@
     &:hover {
       transform: scale(1.1);
       background-color: #093c99;
+      color: $color-input-checked;
+      border: none;
+    }
+
+    &:disabled {
+      transform: none;
+      background-color: $color-card-bg;
       color: $color-input-checked;
       border: none;
     }

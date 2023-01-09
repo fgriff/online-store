@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import style from './Modal.scss';
 import classnames from 'classnames';
+import { useTypedDispatch } from '../../redux/hooks';
+import { closeModal } from '../../redux/slices/basketSlice';
 
 interface IModal {
   children: React.ReactNode;
@@ -18,10 +20,13 @@ function Modal(props: IModal) {
     if (isOpen) setIsVisible(true);
   }, [isOpen]);
 
+  const dispatch = useTypedDispatch();
+
   const closeHandler = () => {
     setIsVisible(false);
     setTimeout(() => {
       setModalState(false);
+      dispatch(closeModal({ open: false }));
     }, 300);
   };
 

@@ -8,8 +8,8 @@ import { ICard } from '../../../types/basket';
 interface IBasketCart {
   card: ICard;
   item: number;
-  incQuantity: (id: number) => void;
-  decQuantity: (id: number) => void;
+  incQuantity: (id: number, price: number) => void;
+  decQuantity: (id: number, price: number) => void;
 }
 
 const BasketCart: FC<IBasketCart> = (props) => {
@@ -25,7 +25,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
       <div className={style.card__info}>
         <img
           className={style.card__img}
-          src={product.images[0]}
+          src={product.thumbnail}
           alt={product.title}
         />
         <div className={style.card__detail}>
@@ -43,14 +43,14 @@ const BasketCart: FC<IBasketCart> = (props) => {
         <div className={style.card__amount}>
           <button
             className={style.card__button}
-            onClick={() => decQuantity(product.id)}
+            onClick={() => decQuantity(product.id, product.price)}
           >
             <RemoveCircleIcon sx={{ fontSize: 25 }} />
           </button>
           <div className={style.card__quantity}> {quantity} </div>
           <button
             className={style.card__button}
-            onClick={() => incQuantity(product.id)}
+            onClick={() => incQuantity(product.id, product.price)}
           >
             <AddCircleIcon sx={{ fontSize: 25 }} />
           </button>

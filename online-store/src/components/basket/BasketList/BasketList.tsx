@@ -5,6 +5,7 @@ import { IProduct } from '../../../types/basket';
 
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import { useSearchParams } from 'react-router-dom';
 
 type IEventHandler = React.ChangeEvent<HTMLInputElement>;
 
@@ -15,13 +16,14 @@ interface IBasketList {
       quantity: number;
     };
   };
-  incQuantity: (id: number) => void;
-  decQuantity: (id: number) => void;
+  incQuantity: (id: number, price: number) => void;
+  decQuantity: (id: number, price: number) => void;
 }
 
 function BasketList(props: IBasketList) {
   const { basket, incQuantity, decQuantity } = props;
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(5);
 
@@ -29,21 +31,52 @@ function BasketList(props: IBasketList) {
   const firstIndex = lastIndex - perPage;
 
   const cards = Object.values(basket);
-  const currentCards = cards.slice(firstIndex, lastIndex);
 
   const totalPage = Math.ceil(cards.length / perPage);
+  const currentCards = cards.slice(firstIndex, lastIndex);
 
   useEffect(() => {
     setCurrentPage((cur) => Math.min(cur, totalPage));
   }, [perPage]);
 
   const perPageHandler = ({ target }: IEventHandler) => {
-    setPerPage(Math.min(cards.length, Number(target.value)));
+    const limitNum = Math.max(1, Math.min(cards.length, Number(target.value)));
+    setPerPage(limitNum);
+    searchParams.set('limit', limitNum.toString());
+    setSearchParams(searchParams);
   };
 
-  const nextBackHandler = () => setCurrentPage((page) => Math.max(page - 1, 1));
-  const nextPageHandler = () =>
-    setCurrentPage((page) => Math.min(page + 1, totalPage));
+  useEffect(() => {
+    if (searchParams.has('page')) {
+      const pageNum = Number(searchParams.get('page'));
+      setCurrentPage(pageNum);
+    }
+    if (searchParams.has('limit')) {
+      const limitNum = Number(searchParams.get('limit'));
+      setPerPage(limitNum);
+    }
+  }, []);
+
+  const backPageHandler = () => {
+    const pageNum = Math.max(currentPage - 1, 1);
+    setCurrentPage(pageNum);
+
+    if (searchParams.has('page')) {
+      searchParams.set('page', pageNum.toString());
+    }
+    setSearchParams(searchParams);
+  };
+
+  const nextPageHandler = () => {
+    const pageNum = Math.min(currentPage + 1, totalPage);
+    setCurrentPage(pageNum);
+    if (searchParams.has('page')) {
+      searchParams.set('page', pageNum.toString());
+    } else {
+      searchParams.set('page', '2');
+    }
+    setSearchParams(searchParams);
+  };
 
   return (
     <div className={style.list}>
@@ -62,11 +95,14 @@ function BasketList(props: IBasketList) {
         <div className={style.pag__nav}>
           <button
             className={style.pag__btn}
-            onClick={nextBackHandler}
+            onClick={backPageHandler}
           >
             <NavigateBeforeIcon sx={{ fontSize: 25 }} />
           </button>
-          <p className={style.pag__num}>{currentPage}</p>
+          <p className={style.pag__num}>
+            {currentPage}
+            <span className={style.pag__total}>{` / ${totalPage}`}</span>
+          </p>
           <button
             className={style.pag__btn}
             onClick={nextPageHandler}

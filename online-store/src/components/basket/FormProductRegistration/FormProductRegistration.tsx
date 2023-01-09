@@ -9,6 +9,8 @@ import logoCardMir from '../../../assets/img/png/icon-mir.png';
 import logoCardMastercard from '../../../assets/img/png/logo-mastercard.png';
 import logoCardUnionPay from '../../../assets/img/png/logo-unionPay.png';
 import logoCardVisa from '../../../assets/img/png/logo-visa.png';
+import { useTypedDispatch } from '../../../redux/hooks';
+import { closeModal } from '../../../redux/slices/basketSlice';
 
 type IEventHandler = React.ChangeEvent<HTMLInputElement>;
 
@@ -60,8 +62,11 @@ function FormProductRegistration() {
 
   const navigate = useNavigate();
 
+  const dispatch = useTypedDispatch();
   const onSubmit: SubmitHandler<IFormInputs> = () => {
     setSendOrder(true);
+
+    dispatch(closeModal({ open: false }));
 
     setTimeout(() => {
       setSendOrder(false);
