@@ -37,11 +37,7 @@ function BasketList(props: IBasketList) {
 
   useEffect(() => {
     setCurrentPage((cur) => Math.min(cur, totalPage));
-  }, [totalPage]);
-
-  useEffect(() => {
-    setCurrentPage((cur) => Math.min(cur, totalPage));
-  }, [perPage]);
+  }, [totalPage, perPage]);
 
   const perPageHandler = ({ target }: IEventHandler) => {
     const limitNum = Math.max(1, Math.min(cards.length, Number(target.value)));

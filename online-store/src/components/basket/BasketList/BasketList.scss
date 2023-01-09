@@ -43,7 +43,8 @@
     outline: none;
     transition: all 0.2s;
 
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
       border: 1px solid $color-button;
       background-color: white;
     }
@@ -71,7 +72,7 @@
 
     &:hover {
       transform: scale(1.1);
-      background-color: #093C99;
+      background-color: #093c99;
       color: $color-input-checked;
       border: none;
     }
