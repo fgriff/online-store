@@ -88,11 +88,9 @@ const ProductPage = () => {
       if (index === -1) {
         localStorage.addProduct(Number(id));
         dispatch(addProduct({ price: productData?.price }));
-        dispatch(openModal({ open: true }));
-        navigate('/cart');
-      } else {
-        navigate('/cart');
       }
+      dispatch(openModal({ open: true }));
+      navigate('/cart');
     }
   };
 

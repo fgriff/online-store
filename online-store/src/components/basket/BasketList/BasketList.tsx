@@ -37,6 +37,10 @@ function BasketList(props: IBasketList) {
 
   useEffect(() => {
     setCurrentPage((cur) => Math.min(cur, totalPage));
+  }, [totalPage]);
+
+  useEffect(() => {
+    setCurrentPage((cur) => Math.min(cur, totalPage));
   }, [perPage]);
 
   const perPageHandler = ({ target }: IEventHandler) => {
