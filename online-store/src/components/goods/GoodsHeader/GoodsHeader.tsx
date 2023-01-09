@@ -11,13 +11,17 @@ const GoodsHeader: FC<IProductsCount> = (props) => {
 
   return (
     <div className={styles.goodsHeader}>
-      <GoodsSort />
-      <ShowInfo
-        title={'Found: '}
-        total={count}
-      />
-      <GoodsSearch />
-      <LayoutToggle />
+      <div className={styles.goodsHeader__left}>
+        <GoodsSort />
+        <ShowInfo
+          title={'Found: '}
+          total={count}
+        />
+      </div>
+      <div className={styles.goodsHeader__right}>
+        <GoodsSearch />
+        <LayoutToggle />
+      </div>
     </div>
   );
 };
