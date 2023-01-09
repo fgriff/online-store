@@ -10,4 +10,6 @@ export interface ILocalStorage {
   getProducts(key: string): ILocalStorageProduct[];
   addProduct(id: number): void;
   removeProduct(id: number): void;
+  destroyProduct(id: number): void;
+  getProductCount(id: number): number;
 }

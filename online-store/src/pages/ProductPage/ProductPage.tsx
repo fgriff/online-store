@@ -12,8 +12,8 @@ import localStorage from '../../utils/localStorage';
 import classnames from 'classnames';
 import {
   addProduct,
+  destroyProduct,
   openModal,
-  removeProduct,
 } from '../../redux/slices/basketSlice';
 import database from '../../assets/mocks/storage-mock';
 
@@ -57,8 +57,13 @@ const ProductPage = () => {
         dispatch(addProduct({ price: productData.price }));
         setButtonLabel('Remove from cart');
       } else if (buttonLabel === 'Remove from cart') {
-        localStorage.removeProduct(Number(id));
-        dispatch(removeProduct({ price: productData.price }));
+        dispatch(
+          destroyProduct({
+            price: productData.price,
+            count: localStorage.getProductCount(Number(id)),
+          }),
+        );
+        localStorage.destroyProduct(Number(id));
         setButtonLabel('Add to cart');
       }
     }
