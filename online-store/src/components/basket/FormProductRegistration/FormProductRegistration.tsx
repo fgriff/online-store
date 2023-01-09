@@ -60,7 +60,7 @@ function FormProductRegistration() {
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<IFormInputs> = () => {
     setSendOrder(true);
 
     setTimeout(() => {

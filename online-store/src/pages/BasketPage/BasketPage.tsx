@@ -7,7 +7,7 @@ import { IProductsState, ITotal } from '../../types/basket';
 
 import productsStorage from '../../assets/mocks/storage-mock';
 import FormProductRegistration from '../../components/basket/FormProductRegistration/FormProductRegistration';
-const basketContent = [1, 2, 3, 4, 10];
+const basketContent = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 localStorage.setItem('basketContent', JSON.stringify(basketContent));
 
 function BasketPage() {
