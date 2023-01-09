@@ -29,7 +29,7 @@ const filterBySort = (sortType: string, resultArray: IProductsData) => {
   }
 };
 
-const filterBySearchField = (
+export const filterBySearchField = (
   searchValue: string,
   data: IProductsData,
 ): IProductsData => {
