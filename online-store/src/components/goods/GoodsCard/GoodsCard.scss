@@ -111,13 +111,7 @@
 }
 
 .grid {
-  width: calc(
-    (100% / $count-goods-per-line) -
-      (
-        ($size-goods-page-gap * ($count-goods-per-line - 1)) /
-          $count-goods-per-line
-      )
-  );
+  width: 296px;
   height: 350px;
 }
 
@@ -171,5 +165,41 @@
         align-items: flex-end;
       }
     }
+  }
+}
+
+@media (max-width: 1040px) {
+  .list {
+    .goodsCard {
+      &__imageWrapper {
+        width: 250px;
+      }
+    }
+  }
+}
+
+@media (max-width: 929px) {
+  .list {
+    width: 320px;
+    height: auto;
+
+    .goodsCard {
+      width: 100%;
+      flex-direction: column;
+
+      &__imageWrapper {
+        width: 100%;
+      }
+
+      &__info {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .list {
+    width: 100%;
   }
 }
