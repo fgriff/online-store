@@ -1,3 +1,5 @@
+import { IProductsItem } from './products';
+
 export interface IProduct {
   id: number;
   title: string;
@@ -44,4 +46,20 @@ export interface ICard {
 export interface ITotal {
   totalSum: number;
   totalProducts: number;
+}
+
+export interface ICartButtonProps {
+  totalProducts: number;
+}
+
+export type ProductItem = Omit<IProductsItem, 'images'>;
+
+export interface IBasketProduct {
+  count: number;
+  productData: ProductItem;
+}
+
+export interface IBasketState {
+  totalPrice: number;
+  totalCount: number;
 }

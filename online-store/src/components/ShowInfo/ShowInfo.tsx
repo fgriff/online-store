@@ -9,7 +9,7 @@ const ShowInfo: FC<IShowInfo> = (props) => {
     <div className={styles.info}>
       <span className={styles.info__name}>{title}</span>
       <span className={styles.info__count}>
-        {children}
+        {total ? children : undefined}
         <span>{total}</span>
       </span>
     </div>

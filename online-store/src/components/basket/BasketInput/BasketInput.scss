@@ -1,7 +1,6 @@
 @import '../../../scss/variables';
 
 .input {
-
   &__field {
     padding: 10px 15px;
     border: 1px solid $color-text;
@@ -11,8 +10,9 @@
     color: $color-text;
     outline: none;
     transition: all 0.2s;
-    
-    &:hover, &:focus{
+
+    &:hover,
+    &:focus {
       border: 1px solid $color-button;
       background-color: white;
     }

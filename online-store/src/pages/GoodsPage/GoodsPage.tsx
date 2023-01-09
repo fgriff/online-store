@@ -4,13 +4,13 @@ import FiltersList from '../../components/filters/FiltersList/FiltersList';
 import GoodsList from '../../components/goods/GoodsList/GoodsList';
 import GoodsHeader from '../../components/goods/GoodsHeader/GoodsHeader';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
-import { URL } from '../../utils/constants';
 import { getProductsTotalCount } from '../../utils/productsCount';
 import {
   setFilteredData,
   setInitialData,
 } from '../../redux/slices/filtersSlice';
 import { filterData } from '../../utils/filterData';
+import database from '../../assets/mocks/storage-mock';
 
 const GoodsPage = () => {
   const {
@@ -23,15 +23,9 @@ const GoodsPage = () => {
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    (async () => {
-      const response = await fetch(URL);
-      const dataBase = await response.json();
-      const initialCount = getProductsTotalCount(dataBase.products);
+    const initialCount = getProductsTotalCount(database);
 
-      dispatch(
-        setInitialData({ initialCount, initialProducts: dataBase.products }),
-      );
-    })();
+    dispatch(setInitialData({ initialCount, initialProducts: database }));
   }, []);
 
   useEffect(() => {

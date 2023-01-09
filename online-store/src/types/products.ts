@@ -13,6 +13,10 @@ export interface IProductsItem {
   images: string[];
 }
 
+export interface IProductsItemTemplate {
+  [key: string]: number | string | string[];
+}
+
 export type IProductsData = Array<IProductsItem>;
 
 interface IProductTotalCount {

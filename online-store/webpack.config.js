@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESlintPlugin = require('eslint-webpack-plugin');
 const { ProgressPlugin } = require('webpack');
+const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 module.exports = (env, options) => {
   const isProd = options.mode === 'production';
@@ -87,6 +88,15 @@ module.exports = (env, options) => {
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: 'styles/[name].[contenthash:8].css',
+      }),
+      new NetlifyPlugin({
+        redirects: [
+          {
+              from: "/*",
+              to: "/index.html",
+              status: 200,
+          },
+        ]
       }),
     ],
     resolve: {

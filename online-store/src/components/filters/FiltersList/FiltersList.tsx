@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './FiltersList.module.scss';
+import styles from './FiltersList.scss';
 import CheckboxFilter from '../CheckboxFilter/CheckboxFilter';
 import DualFilter from '../DualFilter/DualFilter';
 import EuroIcon from '@mui/icons-material/Euro';
