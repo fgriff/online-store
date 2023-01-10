@@ -77,6 +77,11 @@ class LocalStorageState implements ILocalStorage {
 
     return 0;
   }
+
+  clearProducts() {
+    this.products.length = 0;
+    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.products));
+  }
 }
 
 export const filterData = (

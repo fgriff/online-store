@@ -19,6 +19,11 @@ import database from '../../assets/mocks/storage-mock';
 
 const ProductPage = () => {
   const { id } = useParams();
+
+  if (id && Number(id) > 100) {
+    return <div className={styles.product__notFound}>No product found!</div>;
+  }
+
   const [productData, setProductData] = useState<IProductsItem | undefined>(
     undefined,
   );
@@ -130,6 +135,7 @@ const ProductPage = () => {
                     src={image}
                     loading="lazy"
                     onClick={onImageClickHandler}
+                    alt="Image"
                   />
                 </div>
               ))}

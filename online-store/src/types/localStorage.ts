@@ -12,4 +12,5 @@ export interface ILocalStorage {
   removeProduct(id: number): void;
   destroyProduct(id: number): void;
   getProductCount(id: number): number;
+  clearProducts(): void;
 }

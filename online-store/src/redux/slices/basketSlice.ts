@@ -45,6 +45,10 @@ const basketSlice = createSlice({
     closeModal(state, action) {
       state.isModal = action.payload.close;
     },
+    clearCart(state) {
+      state.totalPrice = 0;
+      state.totalCount = 0;
+    },
   },
 });
 
@@ -55,6 +59,7 @@ export const {
   destroyProduct,
   openModal,
   closeModal,
+  clearCart,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;
