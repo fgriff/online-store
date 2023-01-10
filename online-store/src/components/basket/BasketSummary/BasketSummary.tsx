@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import style from './BasketSummary.scss';
 import BasketInput from '../BasketInput/BasketInput';
-// import classnames from 'classnames';
 
 interface IBasketSummary {
   totalProducts?: number;
