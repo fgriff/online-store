@@ -16,7 +16,7 @@ interface IBasketList {
       quantity: number;
     };
   };
-  incQuantity: (id: number, price: number) => void;
+  incQuantity: (id: number, price: number, stock: number) => void;
   decQuantity: (id: number, price: number) => void;
 }
 

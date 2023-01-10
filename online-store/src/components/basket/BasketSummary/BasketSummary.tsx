@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import style from './BasketSummary.scss';
 import BasketInput from '../BasketInput/BasketInput';
 
@@ -33,6 +33,21 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
   const [promoCodes, setPromoCodes] = useState<IPromo[]>(promos);
 
   const [newPrice, setNewPrice] = useState(totalSum);
+
+  useEffect(() => {
+    const discount =
+      totalSum *
+      (promoCodes.reduce((sum, promo) => {
+        if (promo.isApplied) {
+          return sum + promo.value;
+        } else {
+          return sum;
+        }
+      }, 0) /
+        100);
+    const updatedPrice = totalSum - discount;
+    setNewPrice(updatedPrice);
+  }, [totalSum]);
 
   const inputHandler = ({ target }: IEventHandler) => {
     const currentPromo = target.value.toLowerCase();
@@ -160,7 +175,10 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
         {promoCodes.map((promo) => {
           if (promo.isAdded) {
             return (
-              <div className={style.summary__promos}>
+              <div
+                className={style.summary__promos}
+                key={promo.name}
+              >
                 <p>{`${promo.name} - ${promo.value}% `}</p>
                 <button
                   className={style.summary__btn}

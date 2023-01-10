@@ -58,16 +58,22 @@ function BasketPage() {
     return res;
   };
 
-  const incQuantityHandler = (id: number, price: number): void => {
+  const incQuantityHandler = (
+    id: number,
+    price: number,
+    stock: number,
+  ): void => {
     if (productsState === null) return;
 
     const newProductsState = { ...productsState };
     const prod = newProductsState[id];
-    prod.quantity += 1;
 
-    localStorage.addProduct(id);
-    dispatch(addProduct({ price }));
-    setProductsState(newProductsState);
+    if (prod.quantity < stock) {
+      prod.quantity += 1;
+      localStorage.addProduct(id);
+      dispatch(addProduct({ price }));
+      setProductsState(newProductsState);
+    }
   };
 
   const decQuantityHandler = (id: number, price: number): void => {

@@ -8,7 +8,7 @@ import { ICard } from '../../../types/basket';
 interface IBasketCart {
   card: ICard;
   item: number;
-  incQuantity: (id: number, price: number) => void;
+  incQuantity: (id: number, price: number, stock: number) => void;
   decQuantity: (id: number, price: number) => void;
 }
 
@@ -50,7 +50,9 @@ const BasketCart: FC<IBasketCart> = (props) => {
           <div className={style.card__quantity}> {quantity} </div>
           <button
             className={style.card__button}
-            onClick={() => incQuantity(product.id, product.price)}
+            onClick={() =>
+              incQuantity(product.id, product.price, product.stock)
+            }
           >
             <AddCircleIcon sx={{ fontSize: 25 }} />
           </button>
