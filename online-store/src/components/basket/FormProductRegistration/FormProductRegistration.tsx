@@ -10,7 +10,8 @@ import logoCardMastercard from '../../../assets/img/png/logo-mastercard.png';
 import logoCardUnionPay from '../../../assets/img/png/logo-unionPay.png';
 import logoCardVisa from '../../../assets/img/png/logo-visa.png';
 import { useTypedDispatch } from '../../../redux/hooks';
-import { closeModal } from '../../../redux/slices/basketSlice';
+import { clearCart, closeModal } from '../../../redux/slices/basketSlice';
+import localStorage from '../../../utils/localStorage';
 
 type IEventHandler = React.ChangeEvent<HTMLInputElement>;
 
@@ -69,9 +70,11 @@ function FormProductRegistration() {
     dispatch(closeModal({ open: false }));
 
     setTimeout(() => {
+      localStorage.clearProducts();
+      dispatch(clearCart());
       setSendOrder(false);
       navigate('/');
-    }, 5000);
+    }, 4000);
   };
 
   const [cardIcon, setCardIcon] = useState(logoCardDefault);
