@@ -47,7 +47,12 @@ const BasketCart: FC<IBasketCart> = (props) => {
           >
             <RemoveCircleIcon sx={{ fontSize: 25 }} />
           </button>
-          <div className={style.card__quantity}> {quantity} </div>
+          <div
+            data-testid="quantity"
+            className={style.card__quantity}
+          >
+            {quantity}
+          </div>
           <button
             className={style.card__button}
             onClick={() =>
