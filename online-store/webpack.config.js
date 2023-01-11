@@ -92,11 +92,11 @@ module.exports = (env, options) => {
       new NetlifyPlugin({
         redirects: [
           {
-              from: "/*",
-              to: "/index.html",
-              status: 200,
+            from: '/*',
+            to: '/index.html',
+            status: 200,
           },
-        ]
+        ],
       }),
     ],
     resolve: {

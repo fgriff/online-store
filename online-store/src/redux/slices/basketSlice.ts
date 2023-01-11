@@ -4,6 +4,7 @@ import { IBasketState } from '../../types/basket';
 const initialState: IBasketState = {
   totalPrice: 0,
   totalCount: 0,
+  isModal: false,
 };
 
 const basketSlice = createSlice({
@@ -33,10 +34,32 @@ const basketSlice = createSlice({
       state.totalPrice -= action.payload.price;
       state.totalCount -= 1;
     },
+    destroyProduct(state, action) {
+      const { price, count } = action.payload;
+      state.totalPrice -= price * count;
+      state.totalCount -= count;
+    },
+    openModal(state, action) {
+      state.isModal = action.payload.open;
+    },
+    closeModal(state, action) {
+      state.isModal = action.payload.close;
+    },
+    clearCart(state) {
+      state.totalPrice = 0;
+      state.totalCount = 0;
+    },
   },
 });
 
-export const { setInitialData, addProduct, removeProduct } =
-  basketSlice.actions;
+export const {
+  setInitialData,
+  addProduct,
+  removeProduct,
+  destroyProduct,
+  openModal,
+  closeModal,
+  clearCart,
+} = basketSlice.actions;
 
 export default basketSlice.reducer;

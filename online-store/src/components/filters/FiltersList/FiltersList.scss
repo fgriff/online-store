@@ -6,3 +6,10 @@
   flex-shrink: 0;
   border-right: 1px solid $color-card-bg;
 }
+
+@media (max-width: 590px) {
+  .filters {
+    border-right: none;
+    margin-bottom: 20px;
+  }
+}

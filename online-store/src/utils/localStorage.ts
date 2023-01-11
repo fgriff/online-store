@@ -48,9 +48,38 @@ class LocalStorageState implements ILocalStorage {
     const idx = this.products.findIndex((product) => product.id === productId);
 
     if (idx !== -1) {
+      if (this.products[idx].count > 1) {
+        this.products[idx].count -= 1;
+      } else {
+        this.products.splice(idx, 1);
+      }
+    }
+
+    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.products));
+  }
+
+  destroyProduct(productId: number) {
+    const idx = this.products.findIndex((product) => product.id === productId);
+
+    if (idx !== -1) {
       this.products.splice(idx, 1);
     }
 
+    localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.products));
+  }
+
+  getProductCount(productId: number) {
+    const idx = this.products.findIndex((product) => product.id === productId);
+
+    if (idx !== -1) {
+      return this.products[idx].count;
+    }
+
+    return 0;
+  }
+
+  clearProducts() {
+    this.products.length = 0;
     localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(this.products));
   }
 }
