@@ -14,8 +14,9 @@ describe('Logo', () => {
     render(
       <Provider store={store}>
         <Logo />
-      </Provider>
-      , {wrapper: BrowserRouter});
+      </Provider>,
+      { wrapper: BrowserRouter },
+    );
     expect(screen.getByText(/Online/i)).toBeInTheDocument();
-  })
+  });
 });
