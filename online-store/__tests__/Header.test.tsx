@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
@@ -14,7 +14,8 @@ describe('Header', () => {
     render(
       <Provider store={store}>
         <Header />
-      </Provider>
-      , {wrapper: BrowserRouter});
-  })
+      </Provider>,
+      { wrapper: BrowserRouter },
+    );
+  });
 });

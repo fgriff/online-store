@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -14,7 +14,9 @@ describe('GoodsSearch', () => {
     render(
       <Provider store={store}>
         <GoodsSearch />
-      </Provider>, {wrapper: BrowserRouter});
+      </Provider>,
+      { wrapper: BrowserRouter },
+    );
     expect(screen.getByPlaceholderText(/Search/i)).toBeInTheDocument();
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
     expect(screen.getByDisplayValue('')).toBeInTheDocument();
