@@ -8,10 +8,11 @@ import { Provider } from 'react-redux';
 import { store } from '../src/redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import GoodsCard from '../src/components/goods/GoodsCard/GoodsCard';
+import { IProductsItem } from '../src/types/products';
 
 describe('GoodsCard', () => {
   it('GoodsCard button click', () => {
-    const data = {
+    const data: IProductsItem = {
       id: 1,
       title: '',
       description: '',
@@ -24,7 +25,8 @@ describe('GoodsCard', () => {
       thumbnail: '',
       images: [],
     };
-    const layout = 'grid';
+
+    const layout: string = 'grid';
 
     render(
       <Provider store={store}>

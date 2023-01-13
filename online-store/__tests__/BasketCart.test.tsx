@@ -5,10 +5,12 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import React from 'react';
 import BasketCart from '../src/components/basket/BasketCart/BasketCart';
+import { IProductsItem } from '../src/types/products';
+import { ICard } from '../src/types/basket';
 
 describe('BasketCart', () => {
   it('BasketCart renders', () => {
-    const product = {
+    const product: IProductsItem = {
       id: 1,
       title: '',
       description: '',
@@ -21,7 +23,8 @@ describe('BasketCart', () => {
       thumbnail: '',
       images: [],
     };
-    const card = {
+
+    const card: ICard = {
       product,
       quantity: 10,
     };
