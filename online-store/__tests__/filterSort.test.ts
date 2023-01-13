@@ -1,7 +1,8 @@
 import { filterBySearchField } from '../src/utils/filterData';
 import database from '../src/assets/mocks/storage-mock';
+import { IProductsData } from '../src/types/products';
 
-const result = [
+const result: IProductsData = [
   {
     id: 2,
     title: 'iPhone X',
@@ -21,10 +22,10 @@ const result = [
       'https://i.dummyjson.com/data/products/2/thumbnail.jpg',
     ],
   },
-]
+];
 
 describe('filterBySearchField', () => {
   it('filterBySearchField is correct', () => {
     expect(filterBySearchField('899', database)).toStrictEqual(result);
-  })
+  });
 });
