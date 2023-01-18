@@ -29,9 +29,9 @@ const GoodsSearch = () => {
   };
 
   return (
-    <div className={styles.search}>
+    <div className={styles.searchField}>
       <input
-        className={styles.search__input}
+        className={styles.searchField__input}
         type="search"
         value={searchValue}
         placeholder="Search"
