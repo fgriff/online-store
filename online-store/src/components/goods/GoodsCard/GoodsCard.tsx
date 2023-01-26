@@ -5,13 +5,15 @@ import StarIcon from '@mui/icons-material/Star';
 import EuroIcon from '@mui/icons-material/Euro';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { useTypedDispatch } from '../../../redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import localStorage from '../../../utils/localStorage';
 import { addProduct, destroyProduct } from '../../../redux/slices/basketSlice';
 
 const GoodsCard: FC<IGoodsCardProps> = (props) => {
   const { id, title, description, price, rating, thumbnail } = props.data;
-  const { layout } = props;
+  const {
+    filterValues: { layout },
+  } = useTypedSelector(({ filters }) => filters);
 
   const [buttonLabel, setButtonLabel] = useState('Add to cart');
   const dispatch = useTypedDispatch();

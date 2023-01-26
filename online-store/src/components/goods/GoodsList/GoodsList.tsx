@@ -1,12 +1,9 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styles from './GoodsList.scss';
 import GoodsCard from '../GoodsCard/GoodsCard';
-import { IGoodsListProps } from '../../../types/goods';
 import { useTypedSelector } from '../../../redux/hooks';
 
-const GoodsList: FC<IGoodsListProps> = (props) => {
-  const { layout } = props;
-
+const GoodsList = () => {
   const data = useTypedSelector(({ filters }) => filters.filteredProducts);
 
   return (
@@ -18,7 +15,6 @@ const GoodsList: FC<IGoodsListProps> = (props) => {
         <GoodsCard
           key={card.id}
           data={card}
-          layout={layout}
         />
       ))}
     </div>

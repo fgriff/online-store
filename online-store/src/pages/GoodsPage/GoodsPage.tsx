@@ -15,7 +15,6 @@ import database from '../../assets/mocks/storage-mock';
 const GoodsPage = () => {
   const {
     filterValues: filters,
-    filterValues: { layout },
     initialProducts,
     filteredProducts: products,
   } = useTypedSelector(({ filters }) => filters);
@@ -40,7 +39,7 @@ const GoodsPage = () => {
       <FiltersList />
       <div className={styles.goodsWrapper}>
         <GoodsHeader count={products.length} />
-        <GoodsList layout={layout} />
+        <GoodsList />
       </div>
     </div>
   );
