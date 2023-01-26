@@ -29,9 +29,9 @@ const GoodsPage = () => {
 
   useEffect(() => {
     const filteredData = filterData(initialProducts, filters);
-    const filteredCount = getProductsTotalCount(filteredData);
+    const productsTotalCount = getProductsTotalCount(filteredData);
 
-    dispatch(setFilteredData({ filteredCount, products: filteredData }));
+    dispatch(setFilteredData({ productsTotalCount, products: filteredData }));
   }, [filters]);
 
   return (

@@ -86,7 +86,8 @@ const filtersSlice = createSlice({
     },
     setFilteredData(state, action) {
       state.filteredProducts = action.payload.products;
-      const { brand, category, price, stock } = action.payload.filteredCount;
+      const { brand, category, price, stock } =
+        action.payload.productsTotalCount;
       state.filteredProductsCount.brand = brand;
       state.filteredProductsCount.category = category;
 
