@@ -7,7 +7,11 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import localStorage from '../../../utils/localStorage';
-import { addProduct, destroyProduct } from '../../../redux/slices/basketSlice';
+import {
+  addProduct,
+  destroyProduct,
+  removeProduct,
+} from '../../../redux/slices/basketSlice';
 
 const GoodsCard: FC<IGoodsCardProps> = (props) => {
   const { id, title, description, price, rating, thumbnail } = props.data;
@@ -34,6 +38,7 @@ const GoodsCard: FC<IGoodsCardProps> = (props) => {
         destroyProduct({ price, count: localStorage.getProductCount(id) }),
       );
       localStorage.destroyProduct(id);
+      dispatch(removeProduct({ id }));
       setButtonLabel('Add to cart');
     }
   };

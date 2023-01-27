@@ -16,12 +16,10 @@ interface IBasketList {
       quantity: number;
     };
   };
-  incQuantity: (id: number, price: number, stock: number) => void;
-  decQuantity: (id: number, price: number) => void;
 }
 
 function BasketList(props: IBasketList) {
-  const { basket, incQuantity, decQuantity } = props;
+  const { basket } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
@@ -117,8 +115,6 @@ function BasketList(props: IBasketList) {
           key={card.product.id}
           card={card}
           item={index + 1 + (currentPage - 1) * perPage}
-          incQuantity={incQuantity}
-          decQuantity={decQuantity}
         />
       ))}
     </div>

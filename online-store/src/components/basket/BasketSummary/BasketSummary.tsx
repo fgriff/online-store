@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import style from './BasketSummary.scss';
 import BasketInput from '../BasketInput/BasketInput';
+import { useTypedSelector } from '../../../redux/hooks';
 
 interface IBasketSummary {
-  totalProducts?: number;
-  totalSum: number;
+  // totalProducts?: number;
+  // totalSum: number;
   onClick: (active: boolean) => void;
 }
 
@@ -24,7 +25,9 @@ const promos = [
 ];
 
 const BasketSummary: FC<IBasketSummary> = (props) => {
-  const { totalProducts, totalSum = 0, onClick } = props;
+  const { onClick } = props;
+
+  const { totalPrice, totalCount } = useTypedSelector((state) => state.basket);
 
   const [isPromo, setIsPromo] = useState<boolean>(false);
   const [currentPromo, setCurrentPromo] = useState<string>('');
@@ -32,11 +35,11 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
   const [foundPromoCodes, setFoundPromoCodes] = useState<IPromo | null>();
   const [promoCodes, setPromoCodes] = useState<IPromo[]>(promos);
 
-  const [newPrice, setNewPrice] = useState(totalSum);
+  const [newPrice, setNewPrice] = useState(totalPrice);
 
   useEffect(() => {
     const discount =
-      totalSum *
+      totalPrice *
       (promoCodes.reduce((sum, promo) => {
         if (promo.isApplied) {
           return sum + promo.value;
@@ -45,9 +48,9 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
         }
       }, 0) /
         100);
-    const updatedPrice = totalSum - discount;
+    const updatedPrice = totalPrice - discount;
     setNewPrice(updatedPrice);
-  }, [totalSum]);
+  }, [totalPrice]);
 
   const inputHandler = ({ target }: IEventHandler) => {
     const currentPromo = target.value.toLowerCase();
@@ -75,7 +78,7 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
           ...promoCodes.slice(idx + 1),
         ];
         const discount =
-          totalSum *
+          totalPrice *
           (newPromoCodesState.reduce((sum, promo) => {
             if (promo.isApplied) {
               return sum + promo.value;
@@ -84,7 +87,7 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
             }
           }, 0) /
             100);
-        const updatedPrice = totalSum - discount;
+        const updatedPrice = totalPrice - discount;
         setNewPrice(updatedPrice);
         setPromoCodes(newPromoCodesState);
       }
@@ -96,7 +99,7 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
           ...promoCodes.slice(idx + 1),
         ];
 
-        const discount = (totalSum * promoItem.value) / 100;
+        const discount = (totalPrice * promoItem.value) / 100;
         const updatedPrice = newPrice + discount;
         setNewPrice(updatedPrice);
         setPromoCodes(newPromoCodesState);
@@ -141,13 +144,13 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
       <div className={style.summary__block}>
         <div>
           Products:{' '}
-          <span className={style.summary__colorText}>{totalProducts}</span>
+          <span className={style.summary__colorText}>{totalCount}</span>
         </div>
         <div className={isPromo ? style.summary__promo : ''}>
           Total sum: €{' '}
           <span
             className={style.summary__colorText}
-          >{`${totalSum.toLocaleString('en-US')}`}</span>
+          >{`${totalPrice.toLocaleString('en-US')}`}</span>
         </div>
         {
           <div>
@@ -212,7 +215,7 @@ const BasketSummary: FC<IBasketSummary> = (props) => {
           .map((p) => p.name)
           .join(', ')}`}</p>
         <button
-          disabled={totalProducts === 0}
+          disabled={totalCount === 0}
           className={style.summary__button}
           onClick={() => onClick(true)}
         >

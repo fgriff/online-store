@@ -4,18 +4,31 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 import { ICard } from '../../../types/basket';
+import { useTypedDispatch } from '../../../redux/hooks';
+import localStorage from '../../../utils/localStorage';
+import { decQuantity, incQuantity } from '../../../redux/slices/basketSlice';
 
 interface IBasketCart {
   card: ICard;
   item: number;
-  incQuantity: (id: number, price: number, stock: number) => void;
-  decQuantity: (id: number, price: number) => void;
 }
 
 const BasketCart: FC<IBasketCart> = (props) => {
-  const { card, item, incQuantity, decQuantity } = props;
+  const { card, item } = props;
   const { product, quantity } = card;
   const sum = product.price * quantity;
+
+  const dispatch = useTypedDispatch();
+
+  const decQuantityHandler = (id: number, price: number) => {
+    localStorage.removeProduct(id);
+    dispatch(decQuantity({ id, price }));
+  };
+
+  const incQuantityHandler = (id: number, price: number, stock: number) => {
+    localStorage.addProduct(id);
+    dispatch(incQuantity({ id, price, stock }));
+  };
 
   const toFormat = (num: number): string => num.toLocaleString('en-US');
 
@@ -43,7 +56,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
         <div className={style.card__amount}>
           <button
             className={style.card__button}
-            onClick={() => decQuantity(product.id, product.price)}
+            onClick={() => decQuantityHandler(product.id, product.price)}
           >
             <RemoveCircleIcon sx={{ fontSize: 25 }} />
           </button>
@@ -51,7 +64,7 @@ const BasketCart: FC<IBasketCart> = (props) => {
           <button
             className={style.card__button}
             onClick={() =>
-              incQuantity(product.id, product.price, product.stock)
+              incQuantityHandler(product.id, product.price, product.stock)
             }
           >
             <AddCircleIcon sx={{ fontSize: 25 }} />

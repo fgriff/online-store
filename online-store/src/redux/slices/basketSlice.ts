@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { IBasketState } from '../../types/basket';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IBasketState, IProductsState } from '../../types/basket';
 
 const initialState: IBasketState = {
   totalPrice: 0,
   totalCount: 0,
   isModal: false,
+  productsState: {},
 };
 
 const basketSlice = createSlice({
@@ -30,10 +31,6 @@ const basketSlice = createSlice({
       state.totalPrice += action.payload.price;
       state.totalCount += 1;
     },
-    removeProduct(state, action) {
-      state.totalPrice -= action.payload.price;
-      state.totalCount -= 1;
-    },
     destroyProduct(state, action) {
       const { price, count } = action.payload;
       state.totalPrice -= price * count;
@@ -49,17 +46,53 @@ const basketSlice = createSlice({
       state.totalPrice = 0;
       state.totalCount = 0;
     },
+
+    setProductsState(
+      state,
+      action: PayloadAction<{ products: IProductsState }>,
+    ) {
+      state.productsState = action.payload.products;
+    },
+    decQuantity(state, action: PayloadAction<{ id: number; price: number }>) {
+      const { id, price } = action.payload;
+      const prod = state.productsState[id];
+      state.totalPrice -= price;
+      state.totalCount -= 1;
+      prod.quantity -= 1;
+      if (prod.quantity === 0) {
+        delete state.productsState[id];
+      }
+    },
+    incQuantity(
+      state,
+      action: PayloadAction<{ id: number; stock: number; price: number }>,
+    ) {
+      const { id, stock, price } = action.payload;
+      const prod = state.productsState[id];
+      if (prod.quantity < stock) {
+        prod.quantity += 1;
+        state.totalPrice += price;
+        state.totalCount += 1;
+      }
+    },
+    removeProduct(state, action: PayloadAction<{ id: number }>) {
+      const id = action.payload.id;
+      delete state.productsState[id];
+    },
   },
 });
 
 export const {
   setInitialData,
   addProduct,
-  removeProduct,
   destroyProduct,
   openModal,
   closeModal,
   clearCart,
+  setProductsState,
+  decQuantity,
+  incQuantity,
+  removeProduct,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;
