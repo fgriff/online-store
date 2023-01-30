@@ -1,0 +1,33 @@
+@import '../../scss/variables';
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(1, 1, 1, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s;
+
+  &__visible {
+    opacity: 1;
+  }
+}
+
+.content {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: $color-card-bg;
+  transform: scale(0.5);
+  transition: 0.3s;
+
+  &__visible {
+    transform: scale(1);
+  }
+}

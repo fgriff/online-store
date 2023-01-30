@@ -1,0 +1,72 @@
+@import '../../../scss/variables.scss';
+
+.checkboxFilter {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    color: lighten($color-text, 35%);
+  }
+
+  &__count {
+    color: $color-text;
+  }
+}
+
+.item {
+  &__wrapper {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    color: $color-text;
+    user-select: none;
+
+    &:hover {
+      color: $color-input-checked;
+      cursor: pointer;
+
+      .checkboxFilter__name {
+        color: $color-input-checked;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked ~ .checkbox {
+      background-color: $color-input-checked;
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  background-color: $color-card-bg;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &:after {
+    content: '';
+    display: none;
+    width: 6px;
+    height: 10px;
+    border: solid $color-card-bg;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    left: 6px;
+    top: 3px;
+  }
+}

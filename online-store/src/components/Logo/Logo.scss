@@ -1,0 +1,29 @@
+@import '../../scss/variables.scss';
+
+.logo {
+  height: 35px;
+  display: flex;
+  align-items: center;
+
+  &__image {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: $color-light;
+
+    &_selected {
+      color: $color-button;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .logo {
+    display: none;
+  }
+}

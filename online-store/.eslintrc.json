@@ -1,0 +1,34 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier", "react", "@typescript-eslint"],
+  "extends": [
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
+  "rules": {
+    "no-debugger": "off",
+    "no-console": 0,
+    "@typescript-eslint/no-var-requires": 0, // чтоб не ругался на require в webpack.config
+    "@typescript-eslint/no-explicit-any": 2,
+    "eqeqeq": 2
+  }
+}

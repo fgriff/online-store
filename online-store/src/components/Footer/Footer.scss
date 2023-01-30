@@ -1,0 +1,32 @@
+@import '../../scss/variables.scss';
+
+.footer {
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $color-card-bg;
+
+  &__github,
+  &__year,
+  &__logo {
+    display: block;
+  }
+
+  &__github,
+  &__year {
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: $color-light;
+  }
+
+  &__githubWrapper {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__logo {
+    width: 75px;
+    height: 50px;
+  }
+}

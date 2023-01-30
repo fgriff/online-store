@@ -1,0 +1,113 @@
+@import '../../../scss/variables';
+
+.wrapper {
+  color: $color-light;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 2px solid $color-button;
+}
+
+.error {
+  font-size: 1.4rem;
+  color: red;
+}
+
+.form {
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__msg {
+    color: lawngreen;
+    font-size: 2.2rem;
+    text-align: center;
+    border-bottom: 2px solid green;
+  }
+}
+
+.input {
+  border: 1px solid $color-text;
+  border-radius: 7px;
+  outline: none;
+  font-size: 18px;
+  color: $color-text;
+  transition: all 0.2s;
+  text-align: center;
+  height: 25px;
+  width: 90%;
+
+  &:hover,
+  &:focus {
+    border: 1px solid $color-button;
+    background-color: white;
+  }
+}
+
+.card {
+  margin-top: 10px;
+  padding: 10px;
+  border: solid 1px $color-button;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  &__grid {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    gap: 10px;
+    grid-template-columns: 60px 1fr;
+    grid-template-rows: repeat(3, 35px);
+  }
+
+  &__errors {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__img {
+    height: 35px;
+  }
+}
+
+.submit {
+  margin: 5px auto 0;
+  height: 30px;
+  width: 85%;
+  color: $color-button;
+  border-radius: 10px;
+  border: 1px solid $color-input-checked;
+  font-size: 1.8rem;
+  background-color: $color-card-bg;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: #093c99;
+    color: $color-input-checked;
+    border: none;
+  }
+
+  &:disabled {
+    transform: none;
+    background-color: $color-card-bg;
+    color: $color-input-checked;
+    border: none;
+  }
+}

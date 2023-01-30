@@ -1,0 +1,21 @@
+@import '../../scss/variables';
+@import 'src/scss/mixins';
+
+.basket {
+  display: flex;
+  gap: 10px;
+
+  @include media-desktop {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+.empty {
+  margin: auto;
+  width: 700px;
+  color: $color-light;
+  font-size: 2.4rem;
+  padding-top: 10px;
+  border-bottom: 2px solid #35363a;
+}

@@ -1,0 +1,42 @@
+@import '../../../scss/variables.scss';
+
+.dualFilter {
+  margin-bottom: 10px;
+
+  &__title {
+    margin-bottom: $size-filter-mb;
+    color: $color-light;
+  }
+
+  &__wrapper {
+    margin-left: 10px;
+    width: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__range {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__minRange,
+  &__maxRange {
+    display: flex;
+    line-height: 1.6rem;
+    color: $color-light;
+  }
+
+  &__minRange {
+    margin-left: -10px;
+  }
+
+  &__maxRange {
+    margin-right: -10px;
+  }
+
+  &__result {
+    color: $color-light;
+  }
+}

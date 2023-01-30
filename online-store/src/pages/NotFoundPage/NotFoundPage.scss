@@ -1,0 +1,55 @@
+@import '../../scss/variables';
+
+.page,
+.block {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  margin: 30px;
+}
+
+.block {
+  flex-direction: column;
+  gap: 20px;
+  background-color: $color-card-bg;
+  height: 600px;
+  width: 500px;
+  border-radius: 25px;
+}
+
+.n404 {
+  font-size: 10rem;
+}
+
+.title {
+  font-size: 3.5rem;
+}
+
+.img {
+  height: 220px;
+  background-color: $color-input-checked;
+  border-radius: 50% 35%;
+  border: 5px solid $color-button;
+}
+
+.btn {
+  height: 30px;
+  width: 75%;
+  color: $color-button;
+  border-radius: 10px;
+  border: 1px solid $color-input-checked;
+  font-size: 1.8rem;
+  background-color: $color-card-bg;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: #093c99;
+    color: $color-input-checked;
+    border: none;
+  }
+}

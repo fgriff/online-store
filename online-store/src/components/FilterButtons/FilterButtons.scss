@@ -1,0 +1,21 @@
+@import '../../scss/variables.scss';
+
+.filterButtons {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filterButton {
+  padding: 10px 10px;
+  width: 110px;
+  border-radius: 5px;
+  background-color: $color-card-bg;
+  font-size: 16px;
+  color: $color-light;
+
+  &:hover {
+    background-color: lighten($color-card-bg, 15%);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,15 @@
+@import '../../../scss/variables.scss';
+
+.filters {
+  padding: 10px 10px 0 0;
+  width: 250px;
+  flex-shrink: 0;
+  border-right: 1px solid $color-card-bg;
+}
+
+@media (max-width: 590px) {
+  .filters {
+    border-right: none;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,205 @@
+@import '../../../scss/variables.scss';
+
+.goodsCard {
+  height: 100%;
+  background-color: $color-card-bg;
+  border-radius: 10px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+
+  &__rating,
+  &__title,
+  &__price,
+  &__button {
+    color: $color-light;
+  }
+
+  &__title,
+  &__price {
+    font-size: 18px;
+  }
+
+  &__title {
+    width: 100%;
+    height: 21px;
+    overflow: hidden;
+  }
+
+  &__rating {
+    height: 25px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: $color-card-bg;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+
+  &__ratingCount {
+    margin-left: 5px;
+  }
+
+  &__imageWrapper {
+    height: 220px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .info {
+    &__leftSide,
+    &__rightSide {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &__leftSide {
+      width: 65%;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    &__rightSide {
+      align-items: center;
+    }
+  }
+
+  &__controls {
+    margin-top: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__price {
+    display: flex;
+    font-size: 24px;
+    line-height: 2.4rem;
+  }
+
+  &__button {
+    padding: 10px;
+    width: 135px;
+    background-color: $color-button;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+
+    &:hover {
+      background-color: darken($color-button, 15%);
+      cursor: pointer;
+    }
+
+    &_added {
+      background-color: $color-input-checked;
+    }
+  }
+}
+
+.grid {
+  width: 296px;
+  height: 350px;
+}
+
+.list {
+  width: 100%;
+  height: 250px;
+
+  .goodsCard {
+    width: 100%;
+    display: flex;
+
+    &__imageWrapper {
+      width: 350px;
+      height: 100%;
+    }
+
+    &__info {
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 60%;
+    }
+
+    &__title {
+      height: auto;
+      font-size: 24px;
+    }
+
+    &__description {
+      margin-top: 20px;
+      color: $color-goods-description;
+      font-size: 18px;
+    }
+    &__controls {
+      margin-top: 20px;
+      height: 85px;
+    }
+
+    &__price {
+      align-items: center;
+      font-size: 24px;
+    }
+
+    &__button {
+      padding: 10px 20px;
+      width: 170px;
+      font-size: 16px;
+    }
+
+    & .info {
+      &__rightSide {
+        align-items: flex-end;
+      }
+    }
+  }
+}
+
+@media (max-width: 1040px) {
+  .list {
+    .goodsCard {
+      &__imageWrapper {
+        width: 250px;
+      }
+    }
+  }
+}
+
+@media (max-width: 929px) {
+  .list {
+    width: 320px;
+    height: auto;
+
+    .goodsCard {
+      width: 100%;
+      flex-direction: column;
+
+      &__imageWrapper {
+        width: 100%;
+      }
+
+      &__info {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .list {
+    width: 100%;
+  }
+}

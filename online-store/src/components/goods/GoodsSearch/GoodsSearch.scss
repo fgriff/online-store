@@ -1,0 +1,27 @@
+@import '../../../scss/variables.scss';
+
+.searchField {
+  width: 300px;
+  height: 100%;
+
+  &__input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 15px;
+    background-color: $color-card-bg;
+    font-size: 18px;
+    color: $color-text;
+    outline: none;
+
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .search {
+    margin-bottom: 10px;
+  }
+}

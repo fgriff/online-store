@@ -1,0 +1,14 @@
+@import '../../../scss/variables.scss';
+
+.goods {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: $size-goods-page-gap;
+
+  &__result {
+    color: $color-light;
+  }
+}

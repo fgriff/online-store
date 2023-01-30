@@ -1,0 +1,27 @@
+@import '../../../scss/variables.scss';
+
+.layout {
+  &__label {
+    width: 60px;
+    height: 100%;
+    border-radius: 5px;
+    background-color: $color-card-bg;
+    color: $color-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: lighten($color-card-bg, 15%);
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .layout__icon {
+      color: $color-button;
+    }
+  }
+}

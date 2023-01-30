@@ -1,0 +1,21 @@
+@import '../../../scss/variables.scss';
+
+.sorting {
+  width: 170px;
+  height: 100%;
+
+  &__select {
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: $color-card-bg;
+    font-size: 16px;
+    color: $color-text;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

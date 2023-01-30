@@ -1,0 +1,95 @@
+@import '../../../scss/variables';
+
+$button-size: 2.5rem;
+
+.card {
+  margin: 5px;
+  padding: 5px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-card-bg;
+  border-radius: 15px;
+
+  &__button {
+    height: $button-size;
+    width: $button-size;
+    font-size: $button-size;
+    color: $color-input-checked;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__item {
+    font-size: 2rem;
+    width: 25px;
+    text-align: center;
+  }
+
+  &__info {
+    width: 80%;
+    display: flex;
+  }
+
+  &__img {
+    margin: 10px 10px 10px 0;
+    height: 100px;
+    width: 130px;
+    border-radius: 10px;
+  }
+
+  &__detail {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__control {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 2rem;
+    color: $color-input-checked;
+  }
+
+  &__description {
+    font-size: 1.6rem;
+  }
+
+  &__addInfo {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    color: $color-text;
+  }
+
+  &__amount {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__quantity {
+    font-size: 2rem;
+    display: flex;
+    color: $color-input-checked;
+    padding: 0 8px;
+  }
+
+  &__sum {
+    font-size: 1.8rem;
+  }
+}
