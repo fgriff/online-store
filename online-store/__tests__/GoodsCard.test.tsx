@@ -26,14 +26,9 @@ describe('GoodsCard', () => {
       images: [],
     };
 
-    const layout: string = 'grid';
-
     render(
       <Provider store={store}>
-        <GoodsCard
-          data={data}
-          layout={layout}
-        />
+        <GoodsCard data={data} />
       </Provider>,
       { wrapper: BrowserRouter },
     );
